@@ -3,7 +3,6 @@
 import { useRef, useState, useCallback, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { X } from "lucide-react";
-import { useTheme } from "next-themes";
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
 
@@ -358,8 +357,7 @@ function BrowserChrome({ isDark }: { isDark: boolean }) {
 // ─── Main component ───────────────────────────────────────────────────────────
 
 export function Showcase() {
-  const { resolvedTheme } = useTheme();
-  const isDark = resolvedTheme === "dark";
+  const isDark = false;
 
   const showcaseRef = useRef<HTMLElement>(null);
   const mockupRef = useRef<HTMLDivElement>(null);
@@ -434,7 +432,7 @@ export function Showcase() {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        padding: "80px 32px",
+        padding: "40px 32px 80px",
         background: "var(--color-background)",
       }}
     >

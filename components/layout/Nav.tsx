@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { ThemeToggle } from "./ThemeToggle";
 
 const links = [
   { label: "Work", href: "/work" },
@@ -36,11 +35,11 @@ export function Nav() {
         top: 0,
         zIndex: 50,
         backgroundColor: scrolled
-          ? "color-mix(in srgb, var(--color-surface) 85%, transparent)"
-          : "var(--color-surface)",
+          ? "color-mix(in srgb, var(--color-background) 85%, transparent)"
+          : "var(--color-background)",
         backdropFilter: scrolled ? "blur(20px) saturate(180%)" : "none",
         WebkitBackdropFilter: scrolled ? "blur(20px) saturate(180%)" : "none",
-        borderBottom: "0.5px solid var(--color-border)",
+        borderBottom: "1px solid var(--color-border)",
         transition: "background-color 0.3s ease, backdrop-filter 0.3s ease",
       }}
     >
@@ -78,13 +77,7 @@ export function Nav() {
         </Link>
 
         {/* Nav links */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 36,
-          }}
-        >
+        <div style={{ display: "flex", alignItems: "center", gap: 36 }}>
           {links.map((link) => (
             <Link
               key={link.href}
@@ -109,8 +102,26 @@ export function Nav() {
           ))}
         </div>
 
-        {/* Theme toggle */}
-        <ThemeToggle />
+        {/* CTA */}
+        <a
+          href="/contact"
+          style={{
+            fontSize: 13,
+            fontWeight: 500,
+            letterSpacing: "-0.01em",
+            color: "var(--color-background)",
+            background: "var(--color-text-primary)",
+            padding: "8px 14px",
+            borderRadius: 6,
+            textDecoration: "none",
+            transition: "opacity 0.15s ease",
+            flexShrink: 0,
+          }}
+          onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.opacity = "0.85")}
+          onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.opacity = "1")}
+        >
+          Start a project
+        </a>
       </nav>
     </header>
   );

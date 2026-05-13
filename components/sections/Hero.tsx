@@ -1,10 +1,12 @@
 "use client";
 
+import { ChevronDown } from "lucide-react";
+
 export function Hero() {
   return (
     <section
       style={{
-        height: "calc(100vh - 53px)",
+        minHeight: "calc(88vh - 60px)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -60,6 +62,16 @@ export function Hero() {
         >
           See what we make ›
         </a>
+
+        <div
+          style={{
+            marginTop: 80,
+            color: "var(--color-text-muted)",
+            animation: "bounce-soft 2.4s ease-in-out infinite",
+          }}
+        >
+          <ChevronDown size={20} strokeWidth={1.5} />
+        </div>
       </div>
     </section>
   );
