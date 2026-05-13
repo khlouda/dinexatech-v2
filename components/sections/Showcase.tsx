@@ -423,6 +423,7 @@ export function Showcase() {
 
   return (
     <section
+      id="showcase"
       ref={showcaseRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
