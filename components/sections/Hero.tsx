@@ -3,11 +3,11 @@
 import { useState, useEffect } from "react";
 
 const ISSUE_ROWS = [
-  { category: "Restaurants", project: "Layaly", status: "concept", num: "01" },
-  { category: "Bakeries",    project: "Batten Bay", status: "live",    num: "02" },
-  { category: "Salons",      project: "Stillwood",  status: "concept", num: "03" },
-  { category: "Boutiques",   project: "Forge & Bloom", status: "store", num: "04" },
-  { category: "Dashboards",  project: "Sales · Inventory · CRM", status: "", num: "05" },
+  { category: "Restaurants", project: "Layaly",                    status: "concept", num: "01" },
+  { category: "Bakeries",    project: "Batten Bay",                status: "live",    num: "02" },
+  { category: "Salons",      project: "Stillwood",                 status: "concept", num: "03" },
+  { category: "Boutiques",   project: "Forge & Bloom",             status: "store",   num: "04" },
+  { category: "Dashboards",  project: "Sales · Inventory · CRM",  status: "",        num: "05" },
 ];
 
 function Masthead() {
@@ -48,15 +48,21 @@ function Masthead() {
 
 function InThisIssue({ hideNumbers }: { hideNumbers?: boolean }) {
   return (
-    <div style={{ borderTop: "1px solid rgba(0,0,0,0.15)", paddingTop: 16 }}>
+    <div
+      style={{
+        background: "#FAFAFA",
+        borderRadius: 10,
+        padding: 24,
+      }}
+    >
       <div
         style={{
           fontFamily: "Georgia, 'Times New Roman', serif",
-          fontSize: 10,
+          fontSize: 12,
           letterSpacing: "0.15em",
           color: "var(--color-text-primary)",
           textTransform: "uppercase",
-          marginBottom: 16,
+          marginBottom: 22,
         }}
       >
         In This Issue
@@ -69,27 +75,43 @@ function InThisIssue({ hideNumbers }: { hideNumbers?: boolean }) {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "baseline",
-            lineHeight: 2.1,
+            lineHeight: 2.4,
           }}
         >
           <div style={{ display: "flex", alignItems: "baseline", gap: 6, flex: 1, minWidth: 0 }}>
-            <span style={{ fontSize: 12, color: "var(--color-text-primary)", fontWeight: 400, flexShrink: 0 }}>
+            <span
+              style={{
+                fontSize: 15,
+                color: "var(--color-text-primary)",
+                fontWeight: 400,
+                flexShrink: 0,
+              }}
+            >
               {row.category}
             </span>
-            <span style={{ fontSize: 10, color: "var(--color-text-muted)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+            <span
+              style={{
+                fontSize: 12,
+                color: "var(--color-text-muted)",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
+              }}
+            >
               {row.project}
               {row.status && (
                 <>
                   {" · "}
                   {row.status === "live" ? (
-                    <span style={{ display: "inline-flex", alignItems: "center", gap: 3 }}>
+                    <span style={{ display: "inline-flex", alignItems: "center" }}>
                       <span
                         style={{
                           display: "inline-block",
-                          width: 5,
-                          height: 5,
+                          width: 7,
+                          height: 7,
                           borderRadius: "50%",
-                          background: "var(--color-text-primary)",
+                          background: "#16A34A",
+                          marginRight: 4,
                           verticalAlign: "middle",
                           flexShrink: 0,
                         }}
@@ -104,7 +126,14 @@ function InThisIssue({ hideNumbers }: { hideNumbers?: boolean }) {
             </span>
           </div>
           {!hideNumbers && (
-            <span style={{ fontSize: 10, color: "var(--color-text-muted)", marginLeft: 8, flexShrink: 0 }}>
+            <span
+              style={{
+                fontSize: 14,
+                color: "var(--color-text-muted)",
+                marginLeft: 8,
+                flexShrink: 0,
+              }}
+            >
               {row.num}
             </span>
           )}
@@ -120,7 +149,7 @@ function MiniBattenbay() {
       style={{
         background: "#FAF7F2",
         borderRadius: 8,
-        padding: 14,
+        padding: 20,
         display: "flex",
         flexDirection: "column",
       }}
@@ -131,20 +160,20 @@ function MiniBattenbay() {
           style={{
             fontFamily: "Georgia, 'Times New Roman', serif",
             fontStyle: "italic",
-            fontSize: 13,
+            fontSize: 15,
             color: "#2D1810",
           }}
         >
           Batten Bay
         </span>
-        <span style={{ fontSize: 8, color: "#6B4423" }}>Cart · 2 items</span>
+        <span style={{ fontSize: 10, color: "#6B4423" }}>Featured · 2 items</span>
       </div>
 
       {/* Headline */}
       <div
         style={{
           fontFamily: "Georgia, 'Times New Roman', serif",
-          fontSize: 18,
+          fontSize: 24,
           color: "#2D1810",
           lineHeight: 1.0,
           marginTop: 10,
@@ -156,7 +185,7 @@ function MiniBattenbay() {
         slowly.
       </div>
 
-      {/* Color blocks */}
+      {/* Labeled color blocks */}
       <div
         style={{
           display: "grid",
@@ -167,18 +196,50 @@ function MiniBattenbay() {
       >
         <div
           style={{
-            height: 50,
+            height: 80,
             borderRadius: 3,
             background: "linear-gradient(135deg, #D4A574, #8B5A2B)",
+            position: "relative",
+            overflow: "hidden",
           }}
-        />
+        >
+          <span
+            style={{
+              position: "absolute",
+              bottom: 8,
+              left: 8,
+              fontSize: 11,
+              fontFamily: "Georgia, 'Times New Roman', serif",
+              fontStyle: "italic",
+              color: "rgba(255,255,255,0.95)",
+            }}
+          >
+            Sourdough
+          </span>
+        </div>
         <div
           style={{
-            height: 50,
+            height: 80,
             borderRadius: 3,
             background: "linear-gradient(135deg, #E8B260, #B5832A)",
+            position: "relative",
+            overflow: "hidden",
           }}
-        />
+        >
+          <span
+            style={{
+              position: "absolute",
+              bottom: 8,
+              left: 8,
+              fontSize: 11,
+              fontFamily: "Georgia, 'Times New Roman', serif",
+              fontStyle: "italic",
+              color: "rgba(255,255,255,0.95)",
+            }}
+          >
+            Honey Wheat
+          </span>
+        </div>
       </div>
 
       {/* Total */}
@@ -191,13 +252,13 @@ function MiniBattenbay() {
           alignItems: "baseline",
         }}
       >
-        <span style={{ fontSize: 9, color: "#6B4423", letterSpacing: "0.04em" }}>
+        <span style={{ fontSize: 10, color: "#6B4423", letterSpacing: "0.04em" }}>
           PICKUP TOTAL
         </span>
         <span
           style={{
             fontFamily: "Georgia, 'Times New Roman', serif",
-            fontSize: 14,
+            fontSize: 18,
             color: "#2D1810",
           }}
         >
@@ -210,9 +271,9 @@ function MiniBattenbay() {
         style={{
           background: "#2D1810",
           color: "#F7F1E8",
-          padding: "6px",
+          padding: "8px",
           borderRadius: 4,
-          fontSize: 10,
+          fontSize: 11,
           border: "none",
           cursor: "default",
           marginTop: 8,
@@ -325,6 +386,7 @@ export function Hero() {
         padding: "50px clamp(24px, 5vw, 50px)",
         display: "flex",
         flexDirection: "column",
+        justifyContent: "center",
       }}
     >
       <div
@@ -332,9 +394,6 @@ export function Hero() {
           maxWidth: 1280,
           margin: "0 auto",
           width: "100%",
-          display: "flex",
-          flexDirection: "column",
-          flex: 1,
         }}
       >
         <Masthead />
@@ -351,7 +410,7 @@ export function Hero() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "0.5fr 1.6fr 1fr",
+              gridTemplateColumns: "0.6fr 1.5fr 1.1fr",
               gap: 36,
               alignItems: "start",
             }}

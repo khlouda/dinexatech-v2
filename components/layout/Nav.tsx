@@ -77,7 +77,7 @@ export function Nav() {
         </Link>
 
         {/* Nav links */}
-        <div style={{ display: "flex", alignItems: "center", gap: 36 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 28 }}>
           {links.map((link) => (
             <Link
               key={link.href}
