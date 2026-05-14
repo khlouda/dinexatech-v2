@@ -38,14 +38,13 @@ export function Nav() {
         }}
         aria-label="Main navigation"
       >
-        {/* Wordmark */}
+        {/* Logo mark + wordmark */}
         <Link
           href="/"
           style={{
-            fontSize: 14,
-            fontWeight: 500,
-            letterSpacing: "-0.025em",
-            color: "var(--color-text-primary)",
+            display: "flex",
+            alignItems: "center",
+            gap: 9,
             textDecoration: "none",
             transition: "opacity 0.15s ease",
             flexShrink: 0,
@@ -53,7 +52,33 @@ export function Nav() {
           onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.opacity = "0.6")}
           onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.opacity = "1")}
         >
-          DinexaTech
+          {/* DT monogram mark */}
+          <svg width="28" height="28" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            {/* Outer D shape */}
+            <path
+              d="M14 8 H44 C70 8 86 24 86 50 C86 76 70 92 44 92 H14 Z"
+              fill="var(--color-text-primary)"
+            />
+            {/* Inner D hole */}
+            <path
+              d="M30 26 H42 C60 26 68 35 68 50 C68 65 60 74 42 74 H30 Z"
+              fill="var(--color-background)"
+            />
+            {/* T crossbar */}
+            <rect x="30" y="26" width="32" height="13" fill="var(--color-text-primary)" />
+            {/* T stem */}
+            <rect x="38" y="26" width="14" height="48" fill="var(--color-text-primary)" />
+          </svg>
+          <span
+            style={{
+              fontSize: 15,
+              fontWeight: 500,
+              letterSpacing: "-0.03em",
+              color: "var(--color-text-primary)",
+            }}
+          >
+            DinexaTech
+          </span>
         </Link>
 
         {/* Nav links */}
