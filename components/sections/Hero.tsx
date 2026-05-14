@@ -382,11 +382,9 @@ export function Hero() {
   return (
     <section
       style={{
-        minHeight: "calc(100vh - 60px)",
-        padding: "50px clamp(24px, 5vw, 50px)",
+        padding: "clamp(40px, 6vh, 80px) clamp(24px, 5vw, 50px)",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
       }}
     >
       <div

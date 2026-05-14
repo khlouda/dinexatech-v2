@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
 
 const links = [
   { label: "Work", href: "/work" },
@@ -11,22 +10,6 @@ const links = [
 ];
 
 export function Nav() {
-  const [scrolled, setScrolled] = useState(false);
-  const rafRef = useRef<number | null>(null);
-
-  useEffect(() => {
-    const onScroll = () => {
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-      rafRef.current = requestAnimationFrame(() => {
-        setScrolled(window.scrollY > 8);
-      });
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-    };
-  }, []);
 
   return (
     <header
@@ -34,13 +17,10 @@ export function Nav() {
         position: "sticky",
         top: 0,
         zIndex: 50,
-        backgroundColor: scrolled
-          ? "color-mix(in srgb, var(--color-background) 85%, transparent)"
-          : "var(--color-background)",
-        backdropFilter: scrolled ? "blur(20px) saturate(180%)" : "none",
-        WebkitBackdropFilter: scrolled ? "blur(20px) saturate(180%)" : "none",
-        borderBottom: "1px solid var(--color-border)",
-        transition: "background-color 0.3s ease, backdrop-filter 0.3s ease",
+        backgroundColor: "color-mix(in srgb, var(--color-background) 82%, transparent)",
+        backdropFilter: "blur(20px) saturate(180%)",
+        WebkitBackdropFilter: "blur(20px) saturate(180%)",
+        borderBottom: "1px solid rgba(0,0,0,0.12)",
       }}
     >
       <nav
