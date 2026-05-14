@@ -40,7 +40,7 @@
 
 /* ─── Color tokens ───────────────────────────────────── */
 :root {
-  --color-background: #ffffff;
+  --color-background: #fafaf8;
   --color-surface: #fbfbfd;
   --color-text-primary: #1d1d1f;
   --color-text-secondary: #515154;
