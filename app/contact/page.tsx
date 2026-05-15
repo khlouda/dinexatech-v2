@@ -52,12 +52,12 @@ export default function ContactPage() {
 
   const inputStyle: React.CSSProperties = {
     width: "100%",
-    fontSize: 15,
+    fontSize: 16,
     color: "#1D1D1F",
     background: "transparent",
     border: "none",
     borderBottom: "1px solid rgba(0,0,0,0.14)",
-    padding: "10px 0",
+    padding: "12px 0",
     outline: "none",
     fontFamily: "inherit",
     transition: "border-color 0.2s ease",
@@ -65,11 +65,11 @@ export default function ContactPage() {
 
   const labelStyle: React.CSSProperties = {
     fontFamily: MONO,
-    fontSize: 10,
-    color: "#86868B",
+    fontSize: 11,
+    color: "#6E6E73",
     letterSpacing: "0.08em",
     display: "block",
-    marginBottom: 8,
+    marginBottom: 10,
   };
 
   if (submitted) {
@@ -103,43 +103,44 @@ export default function ContactPage() {
 
       {/* ── Left panel — dark ───────────────────────────────────────────────── */}
       <div style={{
-        width: isMobile ? "100%" : "42%",
+        width: isMobile ? "100%" : "44%",
         flexShrink: 0,
         background: "#141416",
         padding: isMobile
           ? "48px 28px 40px"
-          : "clamp(56px, 8vh, 96px) clamp(40px, 5vw, 72px)",
+          : "clamp(56px, 8vh, 80px) clamp(40px, 5vw, 64px)",
         display: "flex",
         flexDirection: "column",
+        gap: 32,
         position: isMobile ? "relative" : "sticky",
         top: 0,
         height: isMobile ? "auto" : "100vh",
         overflowY: "auto",
       }}>
 
-        <span style={{ fontFamily: MONO, fontSize: 10, color: "#6E6E73", letterSpacing: "0.1em", display: "block", marginBottom: 24 }}>
-          START A PROJECT
-        </span>
+        <div>
+          <span style={{ fontFamily: MONO, fontSize: 10, color: "#6E6E73", letterSpacing: "0.1em", display: "block", marginBottom: 20 }}>
+            START A PROJECT
+          </span>
+          <h1 style={{
+            fontSize: "clamp(28px, 3vw, 44px)",
+            fontWeight: 600,
+            color: "#F5F5F7",
+            letterSpacing: "-0.045em",
+            lineHeight: 1.0,
+            marginBottom: 16,
+          }}>
+            Let's build something people notice.
+          </h1>
+          <p style={{ fontSize: 15, color: "#8E8E93", lineHeight: 1.65 }}>
+            Fill out the form and we'll get back to you within one business day — free, no commitment.
+          </p>
+        </div>
 
-        <h1 style={{
-          fontSize: "clamp(30px, 3.5vw, 48px)",
-          fontWeight: 600,
-          color: "#F5F5F7",
-          letterSpacing: "-0.045em",
-          lineHeight: 1.0,
-          marginBottom: 20,
-        }}>
-          Let's build something people notice.
-        </h1>
-
-        <p style={{ fontSize: 15, color: "#A1A1A6", lineHeight: 1.65, marginBottom: isMobile ? 36 : "auto", maxWidth: 360 }}>
-          Fill out the form and we'll get back to you within one business day to talk through your project — free, no commitment.
-        </p>
-
-        {/* What happens next — hidden on mobile to keep it short */}
+        {/* What happens next — hidden on mobile */}
         {!isMobile && (
-          <div style={{ borderTop: "0.5px solid rgba(255,255,255,0.08)", paddingTop: 32 }}>
-            <span style={{ fontFamily: MONO, fontSize: 10, color: "#6E6E73", letterSpacing: "0.08em", display: "block", marginBottom: 22 }}>
+          <div style={{ borderTop: "0.5px solid rgba(255,255,255,0.08)", paddingTop: 28 }}>
+            <span style={{ fontFamily: MONO, fontSize: 10, color: "#6E6E73", letterSpacing: "0.08em", display: "block", marginBottom: 20 }}>
               WHAT HAPPENS NEXT
             </span>
             {[
@@ -147,23 +148,20 @@ export default function ContactPage() {
               { step: "02", text: "On the call we nail down scope, timeline, and price — no surprises." },
               { step: "03", text: "We build. You launch. You own everything." },
             ].map((item) => (
-              <div key={item.step} style={{ display: "flex", gap: 16, marginBottom: 22 }}>
-                <span style={{ fontFamily: MONO, fontSize: 10, color: "#3A3A3C", letterSpacing: "0.06em", flexShrink: 0, paddingTop: 2 }}>
+              <div key={item.step} style={{ display: "flex", gap: 16, marginBottom: 20 }}>
+                <span style={{ fontFamily: MONO, fontSize: 10, color: "#48484A", letterSpacing: "0.06em", flexShrink: 0, paddingTop: 2 }}>
                   {item.step}
                 </span>
-                <p style={{ fontSize: 14, color: "#6E6E73", lineHeight: 1.65, margin: 0 }}>{item.text}</p>
+                <p style={{ fontSize: 14, color: "#8E8E93", lineHeight: 1.65, margin: 0 }}>{item.text}</p>
               </div>
             ))}
           </div>
         )}
 
-        {/* Footer note */}
         {!isMobile && (
-          <div style={{ marginTop: 32 }}>
-            <span style={{ fontFamily: MONO, fontSize: 9, color: "#3A3A3C", letterSpacing: "0.1em" }}>
-              NORFOLK, VA · DINEXATECH
-            </span>
-          </div>
+          <span style={{ fontFamily: MONO, fontSize: 9, color: "#48484A", letterSpacing: "0.1em", marginTop: "auto" }}>
+            NORFOLK, VA · DINEXATECH
+          </span>
         )}
       </div>
 
@@ -173,10 +171,12 @@ export default function ContactPage() {
         background: "#FAFAF9",
         padding: isMobile
           ? "40px 28px 60px"
-          : "clamp(56px, 8vh, 96px) clamp(40px, 5vw, 72px)",
+          : "clamp(56px, 8vh, 80px) clamp(40px, 5vw, 64px)",
         overflowY: "auto",
+        display: "flex",
+        alignItems: "flex-start",
       }}>
-        <form onSubmit={handleSubmit} style={{ maxWidth: 520, display: "flex", flexDirection: "column", gap: 36 }}>
+        <form onSubmit={handleSubmit} style={{ width: "100%", maxWidth: 480, display: "flex", flexDirection: "column", gap: 32 }}>
 
           {/* Name */}
           <div>
