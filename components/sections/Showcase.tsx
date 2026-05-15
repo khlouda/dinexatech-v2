@@ -423,9 +423,8 @@ export function Showcase() {
         </div>
 
         {isMobile ? (
-          /* ── Mobile: info top, mockup bottom ── */
-          <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
-            <InfoPanel activeCase={activeCase} activeIdx={activeIdx} goTo={goTo} fading={fading} isMobile />
+          /* ── Mobile: mockup top, info bottom ── */
+          <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
             <div style={{ perspective: 1200 }}>
               <motion.div
                 ref={mockupRef}
@@ -445,6 +444,7 @@ export function Showcase() {
                 </div>
               </motion.div>
             </div>
+            <InfoPanel activeCase={activeCase} activeIdx={activeIdx} goTo={goTo} fading={fading} isMobile />
           </div>
         ) : (
           /* ── Desktop: mockup left, info right ── */
