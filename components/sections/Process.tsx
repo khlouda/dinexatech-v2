@@ -63,7 +63,7 @@ function StepCard({ step, isMobile }: { step: Step; isMobile: boolean }) {
         style={{
           background: "var(--color-text-primary)",
           borderRadius: 12,
-          padding: isMobile ? 20 : 24,
+          padding: isMobile ? 24 : 24,
           display: "flex",
           flexDirection: "column",
         }}
@@ -287,7 +287,7 @@ export function Process() {
       style={{
         background:
           "linear-gradient(180deg, #FFFFFF 0%, #F5F5F7 28%, #F5F5F7 72%, #FFFFFF 100%)",
-        padding: `clamp(60px, 8vw, 100px) clamp(24px, 5vw, 50px)`,
+        padding: `clamp(60px, 8vw, 100px) clamp(22px, 5vw, 50px)`,
         position: "relative",
       }}
     >

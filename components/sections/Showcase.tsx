@@ -400,7 +400,7 @@ export function Showcase() {
       onTouchEnd={onTouchEnd}
       style={{
         background: "#ECEAE7",
-        padding: "clamp(48px, 8vw, 80px) clamp(16px, 5vw, 50px)",
+        padding: "clamp(56px, 8vw, 80px) clamp(22px, 5vw, 50px)",
       }}
     >
       <div style={{ maxWidth: 1320, margin: "0 auto" }}>
