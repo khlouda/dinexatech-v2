@@ -239,23 +239,31 @@ function LeftColumn() {
           borderTop: "0.5px solid rgba(255,255,255,0.1)",
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
-          gap: 10,
+          gap: "18px 32px",
         }}
       >
         {SPECS.map((spec) => (
-          <div
-            key={spec.label}
-            style={{
-              padding: "12px 14px",
-              borderRadius: 8,
-              border: "0.5px solid rgba(255,255,255,0.1)",
-              background: "rgba(255,255,255,0.04)",
-            }}
-          >
-            <div style={{ fontFamily: MONO, fontSize: 9, color: "#6E6E73", letterSpacing: "0.1em", marginBottom: 5 }}>
+          <div key={spec.label}>
+            <div
+              style={{
+                fontFamily: MONO,
+                fontSize: 10,
+                color: "#6E6E73",
+                letterSpacing: "0.08em",
+                marginBottom: 4,
+              }}
+            >
               {spec.label}
             </div>
-            <div style={{ fontSize: 14, fontWeight: 500, color: "#F5F5F7", letterSpacing: "-0.01em", lineHeight: 1.2 }}>
+            <div
+              style={{
+                fontSize: 15,
+                fontWeight: 500,
+                color: "#F5F5F7",
+                letterSpacing: "-0.01em",
+                lineHeight: 1.2,
+              }}
+            >
               {spec.value}
             </div>
           </div>
