@@ -147,8 +147,8 @@ export default function ContactPage() {
       }}>
         <form onSubmit={handleSubmit} style={{ width: "100%", maxWidth: 480, display: "flex", flexDirection: "column", gap: 22 }}>
 
-          {/* Name + Email — side by side */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
+          {/* Name + Email — side by side on desktop, stacked on mobile */}
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 22 : 20 }}>
             <div>
               <label style={lbl}>YOUR NAME</label>
               <input required type="text" placeholder="Jane Smith" value={form.name} onChange={(e) => set("name", e.target.value)} style={field}

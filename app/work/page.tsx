@@ -83,32 +83,26 @@ function ProjectCard({ project, isMobile, index }: { project: typeof projects[0]
   const isEven = index % 2 === 0;
 
   return (
-    <article style={{ marginBottom: isMobile ? 80 : 120 }}>
+    <article style={{ marginBottom: isMobile ? 56 : 112 }}>
       {/* Project header */}
       <div style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "baseline",
         paddingBottom: 14,
         borderBottom: "0.5px solid rgba(0,0,0,0.12)",
-        marginBottom: 40,
-        flexWrap: "wrap",
-        gap: 8,
+        marginBottom: 32,
       }}>
-        <div style={{ display: "flex", alignItems: "baseline", gap: 20 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: isMobile ? 6 : 0 }}>
           <span style={{ fontFamily: MONO, fontSize: 10, color: "#86868B", letterSpacing: "0.08em" }}>{project.number}</span>
-          <h2 style={{ fontSize: "clamp(22px, 3vw, 32px)", fontWeight: 600, color: "#1D1D1F", letterSpacing: "-0.035em", lineHeight: 1.0, margin: 0 }}>
-            {project.name}
-          </h2>
-        </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+          <span style={{ fontFamily: MONO, fontSize: 10, color: "rgba(0,0,0,0.15)" }}>·</span>
           <span style={{ fontFamily: MONO, fontSize: 10, color: "#86868B", letterSpacing: "0.06em" }}>{project.category}</span>
-          <span style={{ fontFamily: MONO, fontSize: 10, color: "#86868B", letterSpacing: "0.06em" }}>{project.year}</span>
+          <span style={{ fontFamily: MONO, fontSize: 10, color: "rgba(0,0,0,0.15)" }}>·</span>
           <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
             <span style={{ width: 5, height: 5, borderRadius: "50%", background: project.status === "live" ? "#16A34A" : "#86868B", flexShrink: 0, display: "inline-block" }} />
             <span style={{ fontFamily: MONO, fontSize: 10, color: project.status === "live" ? "#16A34A" : "#86868B", letterSpacing: "0.06em" }}>{project.statusLabel}</span>
           </div>
         </div>
+        <h2 style={{ fontSize: isMobile ? 24 : "clamp(24px, 3vw, 32px)", fontWeight: 600, color: "#1D1D1F", letterSpacing: "-0.035em", lineHeight: 1.1, margin: isMobile ? "6px 0 0" : "8px 0 0" }}>
+          {project.name}
+        </h2>
       </div>
 
       {/* Image + content */}
