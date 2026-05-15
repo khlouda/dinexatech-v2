@@ -216,6 +216,13 @@ function LeftColumn() {
         </a>
         <a
           href="#showcase"
+          onClick={(e) => {
+            const el = document.getElementById("showcase");
+            if (el) {
+              e.preventDefault();
+              el.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          }}
           style={{
             fontSize: 14,
             fontWeight: 500,

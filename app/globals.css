@@ -61,7 +61,15 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  scroll-behavior: smooth;
+}
+
+/* Smooth scroll for in-page anchor clicks only — never on page load/refresh.
+   Using :focus-within on html with the :has() trick is unreliable; instead we
+   trigger smooth scroll via JS click handlers (Hero "See the work"). */
+@media (prefers-reduced-motion: no-preference) {
+  :target {
+    scroll-margin-top: 80px;
+  }
 }
 
 body {
