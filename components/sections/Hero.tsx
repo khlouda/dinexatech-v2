@@ -5,155 +5,160 @@ import { useState, useEffect } from "react";
 const MONO = "'SF Mono', 'JetBrains Mono', 'Menlo', 'Consolas', monospace";
 
 const SPECS = [
-  { label: "DELIVERY", value: "5–7 days", multiline: false },
-  { label: "OWNERSHIP", value: "100% yours", multiline: false },
-  { label: "STACK", value: "Next.js · Stripe\nSupabase · Vercel", multiline: true },
-  { label: "FROM", value: "Norfolk, VA", multiline: false },
+  { label: "DELIVERY",  value: "5–7 days"    },
+  { label: "OWNERSHIP", value: "100% yours"  },
+  { label: "CLIENTS",   value: "Small businesses" },
+  { label: "FROM",      value: "Norfolk, VA" },
 ];
 
-const PROJECTS = [
-  { num: "01", category: "Bakery", name: "Batten Bay Bakehouse", status: "live" as const },
-  { num: "02", category: "Restaurant", name: "Layaly Coffee", status: "concept" as const },
-  { num: "03", category: "Salon", name: "Stillwood Salon", status: "concept" as const },
-  { num: "04", category: "Boutique", name: "Forge & Bloom", status: "live" as const },
-];
+// ── Floating Batten Bay mockup ────────────────────────────────────────────────
 
-// ── Decorative background ─────────────────────────────────────────────────────
-
-function HeroBackground({ isMobile }: { isMobile: boolean }) {
-  return (
-    <>
-      {/* Faint concentric circles — centered on the heading */}
-      <svg
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          top: isMobile ? -60 : -80,
-          left: isMobile ? -100 : -120,
-          width: isMobile ? 480 : 640,
-          height: isMobile ? 480 : 640,
-          pointerEvents: "none",
-          zIndex: 0,
-          flexShrink: 0,
-        }}
-        viewBox="0 0 640 640"
-        fill="none"
-      >
-        <circle cx="320" cy="320" r="319.5" stroke="rgba(0,0,0,0.055)" strokeWidth="0.5" />
-        <circle cx="320" cy="320" r="259.5" stroke="rgba(0,0,0,0.045)" strokeWidth="0.5" />
-        <circle cx="320" cy="320" r="199.5" stroke="rgba(0,0,0,0.04)"  strokeWidth="0.5" />
-        <circle cx="320" cy="320" r="139.5" stroke="rgba(0,0,0,0.035)" strokeWidth="0.5" />
-      </svg>
-
-      {/* Faint large "W" — echoes the first letter of "Websites" */}
-      <span
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          top: isMobile ? -10 : -30,
-          left: isMobile ? -24 : -36,
-          fontSize: isMobile ? 340 : 520,
-          fontWeight: 600,
-          letterSpacing: "-0.05em",
-          lineHeight: 1,
-          color: "rgba(0,0,0,0.028)",
-          pointerEvents: "none",
-          zIndex: 0,
-          userSelect: "none",
-          fontFamily: "var(--font-geist), system-ui, sans-serif",
-        }}
-      >
-        W
-      </span>
-    </>
-  );
-}
-
-// ── Right column — project directory ─────────────────────────────────────────
-
-function ProjectDirectory({ isMobile }: { isMobile: boolean }) {
+function HeroMockup() {
   return (
     <div
       style={{
-        border: "0.5px solid var(--color-border)",
-        borderRadius: 10,
+        borderRadius: 16,
         overflow: "hidden",
+        boxShadow:
+          "0 80px 120px -40px rgba(0,0,0,0.7), 0 40px 60px -20px rgba(0,0,0,0.4), 0 0 0 0.5px rgba(255,255,255,0.06)",
+        transform: "rotate(-1.5deg) translateY(-8px)",
+        transformOrigin: "center bottom",
+        willChange: "transform",
       }}
     >
-      {/* Header */}
+      {/* Browser chrome */}
       <div
         style={{
-          padding: "14px 20px",
-          borderBottom: "0.5px solid var(--color-border)",
+          height: 36,
+          background: "#F0EDE8",
           display: "flex",
-          justifyContent: "space-between",
           alignItems: "center",
-          background: "var(--color-surface)",
+          padding: "0 14px",
+          gap: 6,
+          position: "relative",
+          borderBottom: "0.5px solid rgba(0,0,0,0.08)",
+          flexShrink: 0,
         }}
       >
-        <span style={{ fontFamily: MONO, fontSize: 10, color: "var(--color-text-muted)", letterSpacing: "0.08em" }}>
-          SELECTED WORK
-        </span>
-        <span style={{ fontFamily: MONO, fontSize: 10, color: "var(--color-text-muted)", letterSpacing: "0.04em" }}>
-          2024–2026
-        </span>
-      </div>
-
-      {/* Project rows */}
-      {PROJECTS.map((p, i) => (
+        {[0, 1, 2].map((i) => (
+          <div key={i} style={{ width: 8, height: 8, borderRadius: "50%", background: "#C8C4BC", flexShrink: 0 }} />
+        ))}
         <div
-          key={p.num}
           style={{
-            display: "flex",
-            alignItems: "center",
-            padding: isMobile ? "14px 16px" : "18px 20px",
-            borderBottom: i < PROJECTS.length - 1 ? "0.5px solid var(--color-border)" : "none",
-            gap: isMobile ? 12 : 16,
+            position: "absolute",
+            left: "50%",
+            transform: "translateX(-50%)",
+            fontSize: 11,
+            fontFamily: MONO,
+            color: "#8A857C",
+            whiteSpace: "nowrap",
           }}
         >
-          <span style={{ fontFamily: MONO, fontSize: 11, color: "var(--color-text-muted)", letterSpacing: "0.04em", flexShrink: 0, width: 20 }}>
-            {p.num}
+          battenbaybakehouse.com
+        </div>
+      </div>
+
+      {/* Mockup body */}
+      <div style={{ background: "#FAF7F2", padding: 24 }}>
+        {/* Inner nav */}
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 24 }}>
+          <span style={{ fontFamily: "Georgia,'Times New Roman',serif", fontStyle: "italic", fontSize: 16, color: "#2D1810" }}>
+            Batten Bay
           </span>
-
-          {!isMobile && (
-            <span style={{ fontSize: 11, color: "var(--color-text-muted)", letterSpacing: "0.02em", flexShrink: 0, width: 80 }}>
-              {p.category}
-            </span>
-          )}
-
-          <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", gap: 2 }}>
-            <span style={{ fontSize: isMobile ? 14 : 15, fontWeight: 400, color: "var(--color-text-primary)", letterSpacing: "-0.01em", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-              {p.name}
-            </span>
-            {isMobile && (
-              <span style={{ fontSize: 10, color: "var(--color-text-muted)", letterSpacing: "0.04em", textTransform: "uppercase" }}>
-                {p.category}
-              </span>
-            )}
-          </div>
-
-          <div style={{ display: "flex", alignItems: "center", gap: 5, flexShrink: 0 }}>
-            <span style={{ width: 6, height: 6, borderRadius: "50%", background: p.status === "live" ? "#16A34A" : "var(--color-text-muted)", flexShrink: 0 }} />
-            <span style={{ fontFamily: MONO, fontSize: 10, color: p.status === "live" ? "#16A34A" : "var(--color-text-muted)", letterSpacing: "0.04em" }}>
-              {p.status}
-            </span>
+          <div style={{ display: "flex", gap: 16 }}>
+            {["Story", "Shop", "Order"].map((l) => (
+              <span key={l} style={{ fontSize: 10, color: "#6B4423" }}>{l}</span>
+            ))}
           </div>
         </div>
-      ))}
 
-      {/* Footer */}
-      <div style={{ padding: "12px 20px", background: "var(--color-surface)", borderTop: "0.5px solid var(--color-border)", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <span style={{ fontFamily: MONO, fontSize: 10, color: "var(--color-text-muted)", letterSpacing: "0.04em" }}>
-          4 projects
-        </span>
-        <a
-          href="#showcase"
-          style={{ fontFamily: MONO, fontSize: 10, color: "var(--color-text-primary)", textDecoration: "none", letterSpacing: "0.04em", borderBottom: "0.5px solid var(--color-text-primary)", paddingBottom: 1, transition: "opacity 0.15s ease" }}
-          onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.opacity = "0.5")}
-          onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.opacity = "1")}
-        >
-          VIEW ALL →
-        </a>
+        {/* Hero row */}
+        <div style={{ display: "flex", gap: 16, alignItems: "flex-start", marginBottom: 20 }}>
+          <div style={{ flex: 1 }}>
+            <h2
+              style={{
+                fontSize: 38,
+                fontFamily: "Georgia,'Times New Roman',serif",
+                color: "#2D1810",
+                letterSpacing: "-0.025em",
+                lineHeight: 1.0,
+                fontWeight: 400,
+                marginBottom: 10,
+              }}
+            >
+              Bread,<br />slowly.
+            </h2>
+            <p style={{ fontSize: 11, color: "#6B4423", lineHeight: 1.5, marginBottom: 14 }}>
+              Wild yeast. Old methods.<br />Hampton Roads since 2024.
+            </p>
+            <button
+              style={{
+                background: "#2D1810",
+                color: "#F7F1E8",
+                fontSize: 10,
+                padding: "8px 14px",
+                borderRadius: 5,
+                border: "none",
+                cursor: "default",
+                letterSpacing: "0.01em",
+              }}
+            >
+              Shop this week →
+            </button>
+          </div>
+
+          <img
+            src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&q=80"
+            alt="Artisan bread"
+            style={{
+              width: 140,
+              height: 110,
+              objectFit: "cover",
+              borderRadius: 8,
+              flexShrink: 0,
+              border: "0.5px solid rgba(0,0,0,0.06)",
+            }}
+            loading="lazy"
+          />
+        </div>
+
+        {/* Product cards */}
+        <div style={{ display: "flex", gap: 10 }}>
+          {[
+            { label: "Classic Sourdough", price: "$12" },
+            { label: "Honey Wheat",       price: "$11" },
+            { label: "Rosemary Focaccia", price: "$9"  },
+          ].map((item) => (
+            <div
+              key={item.label}
+              style={{
+                flex: 1,
+                background: "#fff",
+                borderRadius: 8,
+                border: "0.5px solid rgba(0,0,0,0.06)",
+                padding: 8,
+              }}
+            >
+              <img
+                src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=200&q=70"
+                alt={item.label}
+                style={{ width: "100%", height: 64, objectFit: "cover", borderRadius: 5 }}
+                loading="lazy"
+              />
+              <p style={{ marginTop: 6, fontSize: 9, fontFamily: "Georgia,'Times New Roman',serif", fontStyle: "italic", color: "#2D1810" }}>
+                {item.label}
+              </p>
+              <p style={{ fontSize: 9, color: "#6B4423", marginTop: 2 }}>{item.price}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Footer strip */}
+        <div style={{ marginTop: 16, paddingTop: 10, borderTop: "0.5px solid rgba(0,0,0,0.08)" }}>
+          <span style={{ fontSize: 7, fontFamily: "monospace", color: "#6B4423", letterSpacing: "0.1em" }}>
+            EST. 2024 · NORFOLK, VA
+          </span>
+        </div>
       </div>
     </div>
   );
@@ -166,11 +171,11 @@ function LeftColumn() {
     <div>
       <h1
         style={{
-          fontSize: "clamp(52px, 6vw, 76px)",
+          fontSize: "clamp(52px, 5.5vw, 76px)",
           fontWeight: 600,
           lineHeight: 0.95,
           letterSpacing: "-0.05em",
-          color: "var(--color-text-primary)",
+          color: "#F5F5F7",
           marginBottom: 20,
         }}
       >
@@ -182,19 +187,28 @@ function LeftColumn() {
       <p
         style={{
           fontSize: 17,
-          color: "var(--color-text-secondary)",
+          color: "#A1A1A6",
           maxWidth: 400,
           lineHeight: 1.55,
-          marginBottom: 28,
+          marginBottom: 32,
         }}
       >
         A website that brings in more customers — built in a week, priced for real businesses.
       </p>
 
-      <div style={{ display: "inline-flex", gap: 18, alignItems: "center", marginBottom: 40 }}>
+      <div style={{ display: "inline-flex", gap: 16, alignItems: "center", marginBottom: 48 }}>
         <a
           href="/contact"
-          style={{ fontSize: 14, fontWeight: 500, color: "var(--color-background)", background: "var(--color-text-primary)", padding: "12px 22px", borderRadius: 6, textDecoration: "none", transition: "opacity 0.15s ease" }}
+          style={{
+            fontSize: 14,
+            fontWeight: 500,
+            color: "#141416",
+            background: "#F5F5F7",
+            padding: "12px 22px",
+            borderRadius: 6,
+            textDecoration: "none",
+            transition: "opacity 0.15s ease",
+          }}
           onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.opacity = "0.85")}
           onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.opacity = "1")}
         >
@@ -202,7 +216,15 @@ function LeftColumn() {
         </a>
         <a
           href="#showcase"
-          style={{ fontSize: 14, fontWeight: 500, color: "var(--color-text-primary)", textDecoration: "underline", textDecorationThickness: 1, textUnderlineOffset: 4, transition: "opacity 0.15s ease" }}
+          style={{
+            fontSize: 14,
+            fontWeight: 500,
+            color: "#F5F5F7",
+            textDecoration: "underline",
+            textDecorationThickness: 1,
+            textUnderlineOffset: 4,
+            transition: "opacity 0.15s ease",
+          }}
           onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.opacity = "0.6")}
           onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.opacity = "1")}
         >
@@ -211,13 +233,37 @@ function LeftColumn() {
       </div>
 
       {/* Spec grid */}
-      <div style={{ paddingTop: 28, borderTop: "0.5px solid var(--color-border)", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px 32px" }}>
+      <div
+        style={{
+          paddingTop: 24,
+          borderTop: "0.5px solid rgba(255,255,255,0.1)",
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: "18px 32px",
+        }}
+      >
         {SPECS.map((spec) => (
           <div key={spec.label}>
-            <div style={{ fontFamily: MONO, fontSize: 10, color: "var(--color-text-muted)", letterSpacing: "0.08em", marginBottom: 5 }}>
+            <div
+              style={{
+                fontFamily: MONO,
+                fontSize: 10,
+                color: "#6E6E73",
+                letterSpacing: "0.08em",
+                marginBottom: 4,
+              }}
+            >
               {spec.label}
             </div>
-            <div style={{ fontSize: spec.multiline ? 13 : 16, fontWeight: spec.multiline ? 400 : 500, color: "var(--color-text-primary)", letterSpacing: "-0.01em", lineHeight: spec.multiline ? 1.4 : 1.2, whiteSpace: "pre-line" as const }}>
+            <div
+              style={{
+                fontSize: 15,
+                fontWeight: 500,
+                color: "#F5F5F7",
+                letterSpacing: "-0.01em",
+                lineHeight: 1.2,
+              }}
+            >
               {spec.value}
             </div>
           </div>
@@ -242,26 +288,34 @@ export function Hero() {
   return (
     <section
       style={{
-        padding: "clamp(48px, 7vh, 80px) clamp(24px, 5vw, 60px) clamp(48px, 7vh, 80px)",
-        maxWidth: 1320,
-        margin: "0 auto",
+        background: "#141416",
         width: "100%",
-        position: "relative",
-        overflow: "hidden",
       }}
     >
-      <HeroBackground isMobile={isMobile} />
-
-      <div style={{ position: "relative", zIndex: 1 }}>
+      <div
+        style={{
+          padding: "clamp(56px, 8vh, 96px) clamp(24px, 5vw, 60px) clamp(64px, 9vh, 108px)",
+          maxWidth: 1320,
+          margin: "0 auto",
+          width: "100%",
+        }}
+      >
         {isMobile ? (
-          <div style={{ display: "flex", flexDirection: "column", gap: 48 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 52 }}>
             <LeftColumn />
-            <ProjectDirectory isMobile={isMobile} />
+            <HeroMockup />
           </div>
         ) : (
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(40px, 5vw, 80px)", alignItems: "center" }}>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: "clamp(48px, 6vw, 96px)",
+              alignItems: "center",
+            }}
+          >
             <LeftColumn />
-            <ProjectDirectory isMobile={isMobile} />
+            <HeroMockup />
           </div>
         )}
       </div>
