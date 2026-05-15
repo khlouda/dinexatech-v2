@@ -29,8 +29,13 @@ export default function ContactPage() {
     setForm((p) => ({ ...p, [field]: value }));
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    await fetch("https://formspree.io/f/xyzerkqp", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify(form),
+    });
     setSubmitted(true);
   }
 

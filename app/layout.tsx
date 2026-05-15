@@ -13,14 +13,22 @@ const geist = Geist({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://dinexatech.com"),
-  title: "DinexaTech — Websites, perfected.",
+  title: "DinexaTech — Your business, beautifully online.",
   description:
-    "Custom websites, ordering systems, and dashboards for small businesses. Engineered like enterprise. Delivered in days.",
+    "DinexaTech builds beautiful, fast websites for small businesses in Norfolk, VA and beyond. Done in 5–7 days, priced for real businesses.",
+  keywords: ["web design", "small business website", "Norfolk VA", "website design", "bakery website", "restaurant website", "salon website"],
   openGraph: {
-    title: "DinexaTech — Websites, perfected.",
+    title: "DinexaTech — Your business, beautifully online.",
     description:
-      "Custom websites, ordering systems, and dashboards for small businesses. Engineered like enterprise. Delivered in days.",
+      "Beautiful, fast websites for small businesses. Done in 5–7 days, priced to make sense.",
     images: [{ url: "/og-placeholder.png", width: 1200, height: 630 }],
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "DinexaTech — Your business, beautifully online.",
+    description: "Beautiful, fast websites for small businesses. Done in 5–7 days.",
   },
 };
 

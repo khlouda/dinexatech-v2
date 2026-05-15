@@ -193,7 +193,7 @@ function LeftColumn() {
           marginBottom: 32,
         }}
       >
-        A website that brings in more customers — built in a week, priced for real businesses.
+        We build websites that make your business look as good as it actually is — done in a week, at a price that makes sense.
       </p>
 
       <div style={{ display: "inline-flex", gap: 16, alignItems: "center", marginBottom: 48 }}>
