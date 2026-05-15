@@ -348,7 +348,7 @@ export function Process() {
         {/* CTA */}
         <div style={{ marginTop: 40, textAlign: "center" }}>
           <a
-            href="#contact"
+            href="/contact"
             style={{
               fontSize: 14,
               fontWeight: 500,
