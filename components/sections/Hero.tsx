@@ -18,6 +18,57 @@ const PROJECTS = [
   { num: "04", category: "Boutique", name: "Forge & Bloom", status: "live" as const },
 ];
 
+// ── Decorative background ─────────────────────────────────────────────────────
+
+function HeroBackground({ isMobile }: { isMobile: boolean }) {
+  return (
+    <>
+      {/* Faint concentric circles — centered on the heading */}
+      <svg
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          top: isMobile ? -60 : -80,
+          left: isMobile ? -100 : -120,
+          width: isMobile ? 480 : 640,
+          height: isMobile ? 480 : 640,
+          pointerEvents: "none",
+          zIndex: 0,
+          flexShrink: 0,
+        }}
+        viewBox="0 0 640 640"
+        fill="none"
+      >
+        <circle cx="320" cy="320" r="319.5" stroke="rgba(0,0,0,0.055)" strokeWidth="0.5" />
+        <circle cx="320" cy="320" r="259.5" stroke="rgba(0,0,0,0.045)" strokeWidth="0.5" />
+        <circle cx="320" cy="320" r="199.5" stroke="rgba(0,0,0,0.04)"  strokeWidth="0.5" />
+        <circle cx="320" cy="320" r="139.5" stroke="rgba(0,0,0,0.035)" strokeWidth="0.5" />
+      </svg>
+
+      {/* Faint large "W" — echoes the first letter of "Websites" */}
+      <span
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          top: isMobile ? -10 : -30,
+          left: isMobile ? -24 : -36,
+          fontSize: isMobile ? 340 : 520,
+          fontWeight: 600,
+          letterSpacing: "-0.05em",
+          lineHeight: 1,
+          color: "rgba(0,0,0,0.028)",
+          pointerEvents: "none",
+          zIndex: 0,
+          userSelect: "none",
+          fontFamily: "var(--font-geist), system-ui, sans-serif",
+        }}
+      >
+        W
+      </span>
+    </>
+  );
+}
+
 // ── Right column — project directory ─────────────────────────────────────────
 
 function ProjectDirectory({ isMobile }: { isMobile: boolean }) {
@@ -40,24 +91,10 @@ function ProjectDirectory({ isMobile }: { isMobile: boolean }) {
           background: "var(--color-surface)",
         }}
       >
-        <span
-          style={{
-            fontFamily: MONO,
-            fontSize: 10,
-            color: "var(--color-text-muted)",
-            letterSpacing: "0.08em",
-          }}
-        >
+        <span style={{ fontFamily: MONO, fontSize: 10, color: "var(--color-text-muted)", letterSpacing: "0.08em" }}>
           SELECTED WORK
         </span>
-        <span
-          style={{
-            fontFamily: MONO,
-            fontSize: 10,
-            color: "var(--color-text-muted)",
-            letterSpacing: "0.04em",
-          }}
-        >
+        <span style={{ fontFamily: MONO, fontSize: 10, color: "var(--color-text-muted)", letterSpacing: "0.04em" }}>
           2024–2026
         </span>
       </div>
@@ -74,90 +111,30 @@ function ProjectDirectory({ isMobile }: { isMobile: boolean }) {
             gap: isMobile ? 12 : 16,
           }}
         >
-          {/* Number */}
-          <span
-            style={{
-              fontFamily: MONO,
-              fontSize: 11,
-              color: "var(--color-text-muted)",
-              letterSpacing: "0.04em",
-              flexShrink: 0,
-              width: 20,
-            }}
-          >
+          <span style={{ fontFamily: MONO, fontSize: 11, color: "var(--color-text-muted)", letterSpacing: "0.04em", flexShrink: 0, width: 20 }}>
             {p.num}
           </span>
 
-          {/* Category — hidden on mobile to save space */}
           {!isMobile && (
-            <span
-              style={{
-                fontSize: 11,
-                color: "var(--color-text-muted)",
-                letterSpacing: "0.02em",
-                flexShrink: 0,
-                width: 80,
-              }}
-            >
+            <span style={{ fontSize: 11, color: "var(--color-text-muted)", letterSpacing: "0.02em", flexShrink: 0, width: 80 }}>
               {p.category}
             </span>
           )}
 
-          {/* Name (+ category on mobile) */}
           <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", gap: 2 }}>
-            <span
-              style={{
-                fontSize: isMobile ? 14 : 15,
-                fontWeight: 400,
-                color: "var(--color-text-primary)",
-                letterSpacing: "-0.01em",
-                whiteSpace: "nowrap",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-              }}
-            >
+            <span style={{ fontSize: isMobile ? 14 : 15, fontWeight: 400, color: "var(--color-text-primary)", letterSpacing: "-0.01em", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
               {p.name}
             </span>
             {isMobile && (
-              <span
-                style={{
-                  fontSize: 10,
-                  color: "var(--color-text-muted)",
-                  letterSpacing: "0.04em",
-                  textTransform: "uppercase",
-                }}
-              >
+              <span style={{ fontSize: 10, color: "var(--color-text-muted)", letterSpacing: "0.04em", textTransform: "uppercase" }}>
                 {p.category}
               </span>
             )}
           </div>
 
-          {/* Status */}
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 5,
-              flexShrink: 0,
-            }}
-          >
-            <span
-              style={{
-                width: 6,
-                height: 6,
-                borderRadius: "50%",
-                background: p.status === "live" ? "#16A34A" : "var(--color-text-muted)",
-                flexShrink: 0,
-              }}
-            />
-            <span
-              style={{
-                fontFamily: MONO,
-                fontSize: 10,
-                color: p.status === "live" ? "#16A34A" : "var(--color-text-muted)",
-                letterSpacing: "0.04em",
-              }}
-            >
+          <div style={{ display: "flex", alignItems: "center", gap: 5, flexShrink: 0 }}>
+            <span style={{ width: 6, height: 6, borderRadius: "50%", background: p.status === "live" ? "#16A34A" : "var(--color-text-muted)", flexShrink: 0 }} />
+            <span style={{ fontFamily: MONO, fontSize: 10, color: p.status === "live" ? "#16A34A" : "var(--color-text-muted)", letterSpacing: "0.04em" }}>
               {p.status}
             </span>
           </div>
@@ -165,31 +142,13 @@ function ProjectDirectory({ isMobile }: { isMobile: boolean }) {
       ))}
 
       {/* Footer */}
-      <div
-        style={{
-          padding: "12px 20px",
-          background: "var(--color-surface)",
-          borderTop: "0.5px solid var(--color-border)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
+      <div style={{ padding: "12px 20px", background: "var(--color-surface)", borderTop: "0.5px solid var(--color-border)", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <span style={{ fontFamily: MONO, fontSize: 10, color: "var(--color-text-muted)", letterSpacing: "0.04em" }}>
           4 projects
         </span>
         <a
           href="#showcase"
-          style={{
-            fontFamily: MONO,
-            fontSize: 10,
-            color: "var(--color-text-primary)",
-            textDecoration: "none",
-            letterSpacing: "0.04em",
-            borderBottom: "0.5px solid var(--color-text-primary)",
-            paddingBottom: 1,
-            transition: "opacity 0.15s ease",
-          }}
+          style={{ fontFamily: MONO, fontSize: 10, color: "var(--color-text-primary)", textDecoration: "none", letterSpacing: "0.04em", borderBottom: "0.5px solid var(--color-text-primary)", paddingBottom: 1, transition: "opacity 0.15s ease" }}
           onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.opacity = "0.5")}
           onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.opacity = "1")}
         >
@@ -229,94 +188,36 @@ function LeftColumn() {
           marginBottom: 28,
         }}
       >
-        Custom sites, ordering systems, and dashboards for small businesses.
-        Engineered like enterprise. Delivered in days.
+        A website that brings in more customers — built in a week, priced for real businesses.
       </p>
 
-      <div
-        style={{
-          display: "inline-flex",
-          gap: 18,
-          alignItems: "center",
-          marginBottom: 40,
-        }}
-      >
+      <div style={{ display: "inline-flex", gap: 18, alignItems: "center", marginBottom: 40 }}>
         <a
           href="/contact"
-          style={{
-            fontSize: 14,
-            fontWeight: 500,
-            color: "var(--color-background)",
-            background: "var(--color-text-primary)",
-            padding: "12px 22px",
-            borderRadius: 6,
-            textDecoration: "none",
-            transition: "opacity 0.15s ease",
-          }}
-          onMouseEnter={(e) =>
-            ((e.currentTarget as HTMLAnchorElement).style.opacity = "0.85")
-          }
-          onMouseLeave={(e) =>
-            ((e.currentTarget as HTMLAnchorElement).style.opacity = "1")
-          }
+          style={{ fontSize: 14, fontWeight: 500, color: "var(--color-background)", background: "var(--color-text-primary)", padding: "12px 22px", borderRadius: 6, textDecoration: "none", transition: "opacity 0.15s ease" }}
+          onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.opacity = "0.85")}
+          onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.opacity = "1")}
         >
           Start a project →
         </a>
         <a
           href="#showcase"
-          style={{
-            fontSize: 14,
-            fontWeight: 500,
-            color: "var(--color-text-primary)",
-            textDecoration: "underline",
-            textDecorationThickness: 1,
-            textUnderlineOffset: 4,
-            transition: "opacity 0.15s ease",
-          }}
-          onMouseEnter={(e) =>
-            ((e.currentTarget as HTMLAnchorElement).style.opacity = "0.6")
-          }
-          onMouseLeave={(e) =>
-            ((e.currentTarget as HTMLAnchorElement).style.opacity = "1")
-          }
+          style={{ fontSize: 14, fontWeight: 500, color: "var(--color-text-primary)", textDecoration: "underline", textDecorationThickness: 1, textUnderlineOffset: 4, transition: "opacity 0.15s ease" }}
+          onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.opacity = "0.6")}
+          onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.opacity = "1")}
         >
           See the work
         </a>
       </div>
 
       {/* Spec grid */}
-      <div
-        style={{
-          paddingTop: 28,
-          borderTop: "0.5px solid var(--color-border)",
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "20px 32px",
-        }}
-      >
+      <div style={{ paddingTop: 28, borderTop: "0.5px solid var(--color-border)", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px 32px" }}>
         {SPECS.map((spec) => (
           <div key={spec.label}>
-            <div
-              style={{
-                fontFamily: MONO,
-                fontSize: 10,
-                color: "var(--color-text-muted)",
-                letterSpacing: "0.08em",
-                marginBottom: 5,
-              }}
-            >
+            <div style={{ fontFamily: MONO, fontSize: 10, color: "var(--color-text-muted)", letterSpacing: "0.08em", marginBottom: 5 }}>
               {spec.label}
             </div>
-            <div
-              style={{
-                fontSize: spec.multiline ? 13 : 16,
-                fontWeight: spec.multiline ? 400 : 500,
-                color: "var(--color-text-primary)",
-                letterSpacing: "-0.01em",
-                lineHeight: spec.multiline ? 1.4 : 1.2,
-                whiteSpace: "pre-line" as const,
-              }}
-            >
+            <div style={{ fontSize: spec.multiline ? 13 : 16, fontWeight: spec.multiline ? 400 : 500, color: "var(--color-text-primary)", letterSpacing: "-0.01em", lineHeight: spec.multiline ? 1.4 : 1.2, whiteSpace: "pre-line" as const }}>
               {spec.value}
             </div>
           </div>
@@ -345,26 +246,25 @@ export function Hero() {
         maxWidth: 1320,
         margin: "0 auto",
         width: "100%",
+        position: "relative",
+        overflow: "hidden",
       }}
     >
-      {isMobile ? (
-        <div style={{ display: "flex", flexDirection: "column", gap: 48 }}>
-          <LeftColumn />
-          <ProjectDirectory isMobile={isMobile} />
-        </div>
-      ) : (
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "clamp(40px, 5vw, 80px)",
-            alignItems: "center",
-          }}
-        >
-          <LeftColumn />
-          <ProjectDirectory isMobile={isMobile} />
-        </div>
-      )}
+      <HeroBackground isMobile={isMobile} />
+
+      <div style={{ position: "relative", zIndex: 1 }}>
+        {isMobile ? (
+          <div style={{ display: "flex", flexDirection: "column", gap: 48 }}>
+            <LeftColumn />
+            <ProjectDirectory isMobile={isMobile} />
+          </div>
+        ) : (
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(40px, 5vw, 80px)", alignItems: "center" }}>
+            <LeftColumn />
+            <ProjectDirectory isMobile={isMobile} />
+          </div>
+        )}
+      </div>
     </section>
   );
 }
