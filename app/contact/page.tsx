@@ -16,6 +16,7 @@ const BUDGETS = [
 export default function ContactPage() {
   const [form, setForm] = useState({ name: "", email: "", business: "", businessType: "", description: "", budget: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -31,6 +32,7 @@ export default function ContactPage() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    setLoading(true);
     await fetch("https://formspree.io/f/xyzerkqp", {
       method: "POST",
       headers: { "Content-Type": "application/json", Accept: "application/json" },
@@ -226,18 +228,28 @@ export default function ContactPage() {
 
           {/* Submit */}
           <div style={{ paddingTop: 6 }}>
-            <button type="submit"
+            <button type="submit" disabled={loading}
               style={{
                 width: "100%", padding: "15px 24px", fontSize: 15, fontWeight: 600,
                 color: "#F5F5F7", background: "#141416", border: "none", borderRadius: 8,
-                cursor: "pointer", fontFamily: "inherit", letterSpacing: "-0.01em",
-                transition: "opacity 0.15s ease",
+                cursor: loading ? "not-allowed" : "pointer", fontFamily: "inherit", letterSpacing: "-0.01em",
+                transition: "opacity 0.15s ease", opacity: loading ? 0.6 : 1,
+                display: "flex", alignItems: "center", justifyContent: "center", gap: 10,
               }}
-              onMouseEnter={(e) => ((e.currentTarget as HTMLButtonElement).style.opacity = "0.82")}
-              onMouseLeave={(e) => ((e.currentTarget as HTMLButtonElement).style.opacity = "1")}
+              onMouseEnter={(e) => { if (!loading) (e.currentTarget as HTMLButtonElement).style.opacity = "0.82"; }}
+              onMouseLeave={(e) => { if (!loading) (e.currentTarget as HTMLButtonElement).style.opacity = "1"; }}
             >
-              Send my project details →
+              {loading ? (
+                <>
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ animation: "spin 0.8s linear infinite" }}>
+                    <circle cx="8" cy="8" r="6" stroke="rgba(255,255,255,0.3)" strokeWidth="2" />
+                    <path d="M8 2a6 6 0 0 1 6 6" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
+                  </svg>
+                  Sending…
+                </>
+              ) : "Send my project details →"}
             </button>
+            <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
             <p style={{ fontSize: 11, color: "#A1A1A6", textAlign: "center", marginTop: 12, fontFamily: MONO, letterSpacing: "0.08em" }}>
               FREE CONSULTATION · NO COMMITMENT
             </p>

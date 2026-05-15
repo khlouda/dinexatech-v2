@@ -1,8 +1,154 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { BrowserChrome } from "@/components/sections/Showcase";
 
 const MONO = "'SF Mono', 'JetBrains Mono', 'Menlo', 'Consolas', monospace";
+
+// ─── Interior-page mockups (different views than homepage Showcase) ────────────
+
+// Batten Bay — "Our story" page
+function BattenBayStoryPage({ isMobile }: { isMobile: boolean }) {
+  return (
+    <div style={{ background: "#FAF7F2", padding: isMobile ? 18 : 24, minHeight: isMobile ? 0 : 460, display: "flex", flexDirection: "column" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: isMobile ? 16 : 22, paddingBottom: 12, borderBottom: "0.5px solid rgba(45,24,16,0.12)" }}>
+        <span style={{ fontFamily: "Georgia,'Times New Roman',serif", fontStyle: "italic", fontSize: isMobile ? 16 : 18, color: "#2D1810" }}>Batten Bay</span>
+        <div style={{ display: "flex", gap: isMobile ? 10 : 14 }}>
+          {["Story", "Shop", "Order"].map((l) => (
+            <span key={l} style={{ fontSize: isMobile ? 10 : 11, color: l === "Story" ? "#2D1810" : "#8B6F4E", fontWeight: l === "Story" ? 500 : 400 }}>{l}</span>
+          ))}
+        </div>
+      </div>
+      <span style={{ fontSize: 9, fontFamily: "monospace", letterSpacing: "0.15em", color: "#8B6F4E", marginBottom: 10 }}>OUR STORY · EST. 2024</span>
+      <h1 style={{ fontSize: isMobile ? 32 : 44, fontFamily: "Georgia,'Times New Roman',serif", color: "#2D1810", letterSpacing: "-0.025em", lineHeight: 1.0, fontWeight: 400, marginBottom: 16 }}>
+        Bread the way<br />it used to be.
+      </h1>
+      <div style={{ display: isMobile ? "block" : "grid", gridTemplateColumns: "1fr 1.2fr", gap: 18 }}>
+        <img src="https://images.unsplash.com/photo-1568254183919-78a4f43a2877?w=400&q=80" alt="Bakery" style={{ width: "100%", height: isMobile ? 120 : 180, objectFit: "cover", borderRadius: 8, marginBottom: isMobile ? 12 : 0 }} loading="lazy" />
+        <div>
+          <p style={{ fontSize: 11, color: "#6B4423", lineHeight: 1.65, marginBottom: 8 }}>
+            We started Batten Bay in a tiny kitchen on Llewellyn Avenue with a single sourdough starter we named after our grandmother.
+          </p>
+          <p style={{ fontSize: 11, color: "#6B4423", lineHeight: 1.65 }}>
+            Every loaf is mixed by hand, fermented for 24 hours, and baked in a stone deck oven the morning you pick it up.
+          </p>
+        </div>
+      </div>
+      <div style={{ marginTop: "auto", paddingTop: 14, display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap" }}>
+        <span style={{ fontSize: 9, fontFamily: "monospace", letterSpacing: "0.08em", color: "#8B6F4E" }}>412 LLEWELLYN AVE · NORFOLK</span>
+        <span style={{ fontSize: 9, color: "rgba(45,24,16,0.2)" }}>·</span>
+        <span style={{ fontSize: 9, fontFamily: "monospace", letterSpacing: "0.08em", color: "#8B6F4E" }}>WED–SAT · 7AM–2PM</span>
+      </div>
+    </div>
+  );
+}
+
+// Layaly — full menu page
+function LayalyMenuPage({ isMobile }: { isMobile: boolean }) {
+  return (
+    <div style={{ background: "#1A1410", padding: isMobile ? 18 : 24, minHeight: isMobile ? 0 : 460, display: "flex", flexDirection: "column" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 18, paddingBottom: 12, borderBottom: "0.5px solid rgba(245,235,216,0.1)" }}>
+        <span style={{ fontFamily: "Georgia,'Times New Roman',serif", fontStyle: "italic", fontSize: isMobile ? 16 : 18, color: "#F5EBD8" }}>Layaly</span>
+        <div style={{ display: "flex", gap: 14 }}>
+          {["Menu", "Visit", "Hours"].map((l) => (
+            <span key={l} style={{ fontSize: 10, color: l === "Menu" ? "#C9A961" : "rgba(245,235,216,0.55)", fontWeight: l === "Menu" ? 500 : 400 }}>{l}</span>
+          ))}
+        </div>
+      </div>
+      <h1 style={{ fontSize: isMobile ? 30 : 38, fontFamily: "Georgia,'Times New Roman',serif", color: "#F5EBD8", letterSpacing: "-0.025em", lineHeight: 1.0, fontWeight: 400, marginBottom: 18 }}>The menu.</h1>
+      <div style={{ display: isMobile ? "block" : "grid", gridTemplateColumns: "1fr 1fr", gap: 22 }}>
+        {[
+          { section: "ESPRESSO", items: [["Espresso", "$3.50"], ["Cortado", "$4.25"], ["Latte", "$5.00"], ["Cappuccino", "$4.75"]] },
+          { section: "POUR OVER", items: [["Ethiopia · Yirgacheffe", "$6.00"], ["Colombia · Huila", "$5.50"], ["Kenya · Nyeri", "$6.50"]] },
+        ].map((col) => (
+          <div key={col.section} style={{ marginBottom: isMobile ? 14 : 0 }}>
+            <span style={{ fontSize: 9, fontFamily: "monospace", letterSpacing: "0.15em", color: "#C9A961", marginBottom: 10, display: "block" }}>{col.section}</span>
+            {col.items.map(([name, price]) => (
+              <div key={name} style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", paddingTop: 7, paddingBottom: 7, borderBottom: "0.5px dotted rgba(245,235,216,0.12)" }}>
+                <span style={{ fontSize: 11, fontFamily: "Georgia,'Times New Roman',serif", color: "#F5EBD8" }}>{name}</span>
+                <span style={{ fontSize: 10, color: "#A89280", fontFamily: "monospace" }}>{price}</span>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+      <div style={{ marginTop: "auto", paddingTop: 14, fontSize: 9, fontFamily: "monospace", letterSpacing: "0.08em", color: "#A89280" }}>
+        ROASTED IN-HOUSE · NORFOLK, VA
+      </div>
+    </div>
+  );
+}
+
+// Stillwood — stylist profile page
+function StillwoodStylistPage({ isMobile }: { isMobile: boolean }) {
+  return (
+    <div style={{ background: "#E8EFEA", padding: isMobile ? 18 : 24, minHeight: isMobile ? 0 : 460, display: "flex", flexDirection: "column" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 18, paddingBottom: 12, borderBottom: "0.5px solid rgba(42,77,52,0.12)" }}>
+        <span style={{ fontSize: isMobile ? 14 : 16, fontWeight: 500, letterSpacing: "-0.02em", color: "#2A4D34" }}>Stillwood</span>
+        <div style={{ display: "flex", gap: 14 }}>
+          {["Services", "Stylists", "Book"].map((l) => (
+            <span key={l} style={{ fontSize: 10, color: l === "Stylists" ? "#2A4D34" : "#6B937A", fontWeight: l === "Stylists" ? 500 : 400 }}>{l}</span>
+          ))}
+        </div>
+      </div>
+      <span style={{ fontSize: 9, fontFamily: "monospace", letterSpacing: "0.15em", color: "#6B937A", marginBottom: 8 }}>STYLIST · 8 YRS EXPERIENCE</span>
+      <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 18 }}>
+        <div style={{ width: isMobile ? 48 : 56, height: isMobile ? 48 : 56, borderRadius: "50%", background: "#2A4D34", display: "flex", alignItems: "center", justifyContent: "center", color: "#E8EFEA", fontSize: 18, fontFamily: "Georgia,'Times New Roman',serif", fontStyle: "italic", flexShrink: 0 }}>M</div>
+        <div>
+          <h2 style={{ fontSize: isMobile ? 24 : 28, fontFamily: "Georgia,'Times New Roman',serif", fontStyle: "italic", color: "#2A4D34", letterSpacing: "-0.02em", lineHeight: 1.0, fontWeight: 400, margin: 0 }}>Maya Hollis</h2>
+          <p style={{ fontSize: 11, color: "#5C8B6B", marginTop: 4 }}>Color specialist · Curl care · Editorial</p>
+        </div>
+      </div>
+      <p style={{ fontSize: 11, color: "#5C8B6B", lineHeight: 1.6, marginBottom: 14 }}>
+        Maya has been cutting and coloring hair in Hampton Roads for nearly a decade. She specializes in lived-in color, curls, and quiet conversation.
+      </p>
+      <span style={{ fontSize: 9, fontFamily: "monospace", letterSpacing: "0.1em", color: "#6B937A", marginBottom: 8 }}>NEXT AVAILABLE</span>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 6 }}>
+        {["Tue 2:00 PM", "Wed 11:30 AM", "Fri 4:00 PM"].map((s) => (
+          <div key={s} style={{ background: "rgba(255,255,255,0.85)", border: "0.5px solid rgba(42,77,52,0.15)", borderRadius: 5, padding: "8px 6px", textAlign: "center", fontSize: 10, color: "#2A4D34" }}>{s}</div>
+        ))}
+      </div>
+      <button style={{ marginTop: "auto", background: "#2A4D34", color: "#fff", fontSize: 11, padding: 10, borderRadius: 6, border: "none", cursor: "default" }}>Book with Maya →</button>
+    </div>
+  );
+}
+
+// Forge & Bloom — product detail page
+function ForgeBloomProductPage({ isMobile }: { isMobile: boolean }) {
+  return (
+    <div style={{ background: "#F5E8E8", padding: isMobile ? 18 : 24, minHeight: isMobile ? 0 : 460, display: "flex", flexDirection: "column" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 18, paddingBottom: 12, borderBottom: "0.5px solid rgba(74,44,44,0.12)" }}>
+        <span style={{ fontFamily: "Georgia,'Times New Roman',serif", fontSize: isMobile ? 14 : 16, color: "#4A2C2C" }}>Forge &amp; Bloom</span>
+        <div style={{ display: "flex", gap: 14 }}>
+          {["Shop", "Custom", "Visit"].map((l) => (
+            <span key={l} style={{ fontSize: 10, color: l === "Shop" ? "#4A2C2C" : "#A87A6A", fontWeight: l === "Shop" ? 500 : 400 }}>{l}</span>
+          ))}
+        </div>
+      </div>
+      <span style={{ fontSize: 9, fontFamily: "monospace", letterSpacing: "0.15em", color: "#A87A6A", marginBottom: 8 }}>SHOP / PERMANENT JEWELRY</span>
+      <div style={{ display: isMobile ? "block" : "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+        <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=400&q=80" alt="14k gold chain" style={{ width: "100%", height: isMobile ? 140 : 200, objectFit: "cover", borderRadius: 8, marginBottom: isMobile ? 12 : 0 }} loading="lazy" />
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <h2 style={{ fontSize: isMobile ? 22 : 26, fontFamily: "Georgia,'Times New Roman',serif", color: "#4A2C2C", letterSpacing: "-0.02em", lineHeight: 1.05, fontWeight: 400, marginBottom: 6 }}>14k Gold Chain</h2>
+          <span style={{ fontSize: 14, color: "#4A2C2C", marginBottom: 10, fontFamily: "Georgia,'Times New Roman',serif" }}>$85.00</span>
+          <p style={{ fontSize: 10, color: "#8B5A4B", lineHeight: 1.6, marginBottom: 12 }}>
+            Solid 14-karat gold-fill chain, welded to fit. No clasp, no closure — designed to be worn forever.
+          </p>
+          <span style={{ fontSize: 9, fontFamily: "monospace", letterSpacing: "0.08em", color: "#A87A6A", marginBottom: 6 }}>LENGTH</span>
+          <div style={{ display: "flex", gap: 5, marginBottom: 12 }}>
+            {["6\"", "7\"", "8\""].map((s, i) => (
+              <div key={s} style={{ flex: 1, padding: "5px 0", textAlign: "center", fontSize: 10, color: i === 1 ? "#fff" : "#4A2C2C", background: i === 1 ? "#4A2C2C" : "transparent", border: "0.5px solid #4A2C2C", borderRadius: 4 }}>{s}</div>
+            ))}
+          </div>
+          <button style={{ background: "#4A2C2C", color: "#fff", fontSize: 11, padding: 10, borderRadius: 6, border: "none", cursor: "default" }}>Add to cart →</button>
+        </div>
+      </div>
+      <div style={{ marginTop: "auto", paddingTop: 14, fontSize: 9, fontFamily: "monospace", letterSpacing: "0.08em", color: "#A87A6A" }}>
+        HANDMADE · SHIPS IN 3–5 DAYS
+      </div>
+    </div>
+  );
+}
 
 const projects = [
   {
@@ -13,15 +159,15 @@ const projects = [
     status: "live" as const,
     statusLabel: "Live site",
     year: "2024",
+    url: "battenbaybakehouse.com",
     description:
       "Batten Bay needed a way to sell their weekly bread menu online without dealing with third-party marketplaces. We built a clean e-commerce site with a custom weekly menu, pickup scheduling, and a branded storefront that feels as handcrafted as the bread itself.",
     deliverables: ["E-commerce storefront", "Weekly menu system", "Pickup scheduling", "Mobile-first design"],
     outcome: "Launched in 6 days. Customers now order directly — no marketplace fees.",
     link: "https://battenbaybakehousedemocarla.netlify.app/",
     linkLabel: "View live site →",
-    accentBg: "#FAF7F2",
     accentColor: "#2D1810",
-    image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=900&q=80",
+    Body: BattenBayStoryPage,
   },
   {
     number: "02",
@@ -31,15 +177,15 @@ const projects = [
     status: "concept" as const,
     statusLabel: "Concept",
     year: "2025",
+    url: "layaly.coffee",
     description:
       "A brand and site concept for a specialty coffee shop with a warm, editorial feel. The goal was to design something that felt as considered as the coffee — not a template, not a generic café site. Menu, hours, location, and an order-ahead flow, all in one place.",
     deliverables: ["Brand identity", "Editorial design", "Menu & hours", "Order-ahead flow"],
     outcome: "A concept demonstrating what a specialty café site can feel like when design matches the product.",
     link: null,
     linkLabel: null,
-    accentBg: "#1A1410",
     accentColor: "#F5EBD8",
-    image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=900&q=80",
+    Body: LayalyMenuPage,
   },
   {
     number: "03",
@@ -49,15 +195,15 @@ const projects = [
     status: "concept" as const,
     statusLabel: "Concept",
     year: "2025",
+    url: "stillwoodsalon.com",
     description:
       "A booking and client portal concept for a boutique hair salon. Instead of sending clients to a third-party booking tool, Stillwood gets their own branded experience — browse stylists, view real availability, and book in seconds, all without leaving the site.",
     deliverables: ["Booking system", "Stylist profiles", "Client portal", "Availability calendar"],
     outcome: "A concept showing how salons can own their booking experience end to end.",
     link: null,
     linkLabel: null,
-    accentBg: "#E8EFEA",
     accentColor: "#2A4D34",
-    image: "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=900&q=80",
+    Body: StillwoodStylistPage,
   },
   {
     number: "04",
@@ -67,20 +213,21 @@ const projects = [
     status: "live" as const,
     statusLabel: "Live store",
     year: "2025",
+    url: "etsy.com/shop/ForgeAndBloomShop",
     description:
       "Forge & Bloom makes permanent jewelry and printable goods by hand. We built a branded Etsy presence and supporting web presence — clean, warm, and built to turn browsers into buyers without losing the handmade feel that makes the shop special.",
     deliverables: ["Branded Etsy store", "Web presence", "Product photography direction", "Copywriting"],
     outcome: "Live and selling. A handmade shop that looks as polished as the jewelry it sells.",
     link: "https://www.etsy.com/shop/ForgeAndBloomShop",
     linkLabel: "Visit the store →",
-    accentBg: "#F5E8E8",
     accentColor: "#4A2C2C",
-    image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=900&q=80",
+    Body: ForgeBloomProductPage,
   },
 ];
 
 function ProjectCard({ project, isMobile, index }: { project: typeof projects[0]; isMobile: boolean; index: number }) {
   const isEven = index % 2 === 0;
+  const Body = project.Body;
 
   return (
     <article style={{ marginBottom: isMobile ? 56 : 112 }}>
@@ -105,39 +252,25 @@ function ProjectCard({ project, isMobile, index }: { project: typeof projects[0]
         </h2>
       </div>
 
-      {/* Image + content */}
+      {/* Mockup + content */}
       <div style={{
         display: isMobile ? "flex" : "grid",
         flexDirection: "column" as const,
         gridTemplateColumns: isEven && !isMobile ? "1fr 1fr" : "1fr 1fr",
-        gap: isMobile ? 28 : 64,
+        gap: isMobile ? 28 : 56,
         alignItems: "start",
       }}>
-        {/* Image */}
-        <div style={{ order: (!isMobile && !isEven) ? 2 : 0, borderRadius: 12, overflow: "hidden", position: "relative" }}>
-          <img
-            src={project.image}
-            alt={project.name}
-            style={{ width: "100%", height: isMobile ? 220 : 340, objectFit: "cover", display: "block" }}
-            loading="lazy"
-          />
-          <div style={{
-            position: "absolute",
-            inset: 0,
-            background: `linear-gradient(to bottom, transparent 40%, ${project.accentBg}cc)`,
-          }} />
-          <div style={{
-            position: "absolute",
-            bottom: 16,
-            left: 20,
-            padding: "6px 12px",
-            background: project.accentBg,
-            borderRadius: 20,
-          }}>
-            <span style={{ fontSize: 11, fontWeight: 500, color: project.accentColor, fontFamily: MONO, letterSpacing: "0.06em" }}>
-              {project.category}
-            </span>
-          </div>
+        {/* Browser mockup — the actual designed work */}
+        <div style={{
+          order: (!isMobile && !isEven) ? 2 : 0,
+          borderRadius: 14,
+          overflow: "hidden",
+          border: "0.5px solid rgba(0,0,0,0.08)",
+          boxShadow: "0 24px 48px -16px rgba(0,0,0,0.14), 0 8px 20px -8px rgba(0,0,0,0.08)",
+          background: "#fff",
+        }}>
+          <BrowserChrome url={project.url} />
+          <Body isMobile={isMobile} />
         </div>
 
         {/* Details */}

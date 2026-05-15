@@ -78,7 +78,7 @@ const cases: Case[] = [
 
 // ─── Mockup bodies ────────────────────────────────────────────────────────────
 
-function BattenBayBody({ isMobile }: { isMobile: boolean }) {
+export function BattenBayBody({ isMobile }: { isMobile: boolean }) {
   return (
     <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", minHeight: isMobile ? 0 : 480 }}>
       <div style={{ flex: 1, background: "#FAF7F2", padding: isMobile ? 18 : 24, display: "flex", flexDirection: "column" }}>
@@ -106,7 +106,7 @@ function BattenBayBody({ isMobile }: { isMobile: boolean }) {
           </div>
         )}
         <div style={{ display: "flex", gap: 10, marginTop: isMobile ? 16 : 0, overflowX: isMobile ? "auto" : "visible", paddingBottom: isMobile ? 4 : 0, marginLeft: isMobile ? -18 : 0, marginRight: isMobile ? -18 : 0, paddingLeft: isMobile ? 18 : 0, paddingRight: isMobile ? 18 : 0 }}>
-          {[{ src: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=300&q=80", pos: "left center", label: "Classic Sourdough", price: "$12" }, { src: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=300&q=80", pos: "center top", label: "Honey Wheat", price: "$11" }, { src: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=300&q=80", pos: "right bottom", label: "Multigrain", price: "$13" }].map((item) => (
+          {[{ src: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=300&q=80", pos: "left center", label: "Classic Sourdough", price: "$12" }, { src: "https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=300&q=80", pos: "center top", label: "Honey Wheat", price: "$11" }, { src: "https://images.unsplash.com/photo-1549931319-a545dcf3bc73?w=300&q=80", pos: "right bottom", label: "Multigrain", price: "$13" }].map((item) => (
             <div key={item.label} style={{ width: isMobile ? 110 : 120, background: "#fff", borderRadius: 8, border: "0.5px solid rgba(0,0,0,0.06)", padding: 8, flexShrink: 0 }}>
               <img src={item.src} alt={item.label} style={{ width: "100%", height: 80, objectFit: "cover", objectPosition: item.pos, borderRadius: 5 }} loading="lazy" />
               <p style={{ marginTop: 6, fontSize: 10, fontFamily: "Georgia,'Times New Roman',serif", fontStyle: "italic", color: "#2D1810" }}>{item.label}</p>
@@ -123,7 +123,7 @@ function BattenBayBody({ isMobile }: { isMobile: boolean }) {
           <span style={{ fontSize: 13, fontFamily: "Georgia,'Times New Roman',serif", fontStyle: "italic", color: "#2D1810" }}>Your Order</span>
           <X size={14} color="#86868B" strokeWidth={1.5} />
         </div>
-        {[{ name: "Classic Sourdough", price: "1 × $12", src: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=80&q=70" }, { name: "Rosemary Focaccia", price: "1 × $9", src: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=80&q=70" }].map((item, i) => (
+        {[{ name: "Classic Sourdough", price: "1 × $12", src: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=80&q=70" }, { name: "Rosemary Focaccia", price: "1 × $9", src: "https://images.unsplash.com/photo-1574126154517-d1e0d89ef734?w=80&q=70" }].map((item, i) => (
           <div key={item.name} style={{ display: "flex", alignItems: "center", gap: 10, paddingTop: 8, paddingBottom: 8, borderBottom: i === 0 ? "0.5px solid rgba(0,0,0,0.08)" : "none" }}>
             <img src={item.src} alt={item.name} style={{ width: 36, height: 36, objectFit: "cover", borderRadius: 4, flexShrink: 0 }} loading="lazy" />
             <span style={{ flex: 1, fontSize: 11, fontFamily: "Georgia,'Times New Roman',serif", fontStyle: "italic", color: "#2D1810" }}>{item.name}</span>
@@ -141,7 +141,7 @@ function BattenBayBody({ isMobile }: { isMobile: boolean }) {
   );
 }
 
-function LaYalyBody({ isMobile }: { isMobile: boolean }) {
+export function LaYalyBody({ isMobile }: { isMobile: boolean }) {
   return (
     <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", minHeight: isMobile ? 0 : 480 }}>
       <div style={{ flex: 1, background: "#1A1410", display: "flex", flexDirection: "column", overflow: "hidden" }}>
@@ -161,7 +161,7 @@ function LaYalyBody({ isMobile }: { isMobile: boolean }) {
           <h2 style={{ fontSize: isMobile ? 30 : 36, fontFamily: "Georgia,'Times New Roman',serif", color: "#F5EBD8", letterSpacing: "-0.025em", lineHeight: 1.0, fontWeight: 400, marginBottom: 10 }}>Coffee,<br />made slowly.</h2>
           <p style={{ fontSize: 12, color: "#A89280", lineHeight: 1.5, marginBottom: 18 }}>Single-origin beans. Roasted in Norfolk.</p>
           <div style={{ display: "flex", gap: 8 }}>
-            {[{ src: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=200&q=80", pos: "center top", label: "Espresso" }, { src: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=200&q=80", pos: "left center", label: "Pour Over" }, { src: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=200&q=80", pos: "right bottom", label: "Cold Brew" }].map((item) => (
+            {[{ src: "https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=200&q=80", pos: "center top", label: "Espresso" }, { src: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=200&q=80", pos: "left center", label: "Pour Over" }, { src: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=200&q=80", pos: "right bottom", label: "Cold Brew" }].map((item) => (
               <div key={item.label} style={{ flex: 1, borderRadius: 6, overflow: "hidden", position: "relative", height: 70 }}>
                 <img src={item.src} alt={item.label} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: item.pos }} loading="lazy" />
                 <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.35)" }} />
@@ -193,7 +193,7 @@ function LaYalyBody({ isMobile }: { isMobile: boolean }) {
   );
 }
 
-function StillwoodBody({ isMobile }: { isMobile: boolean }) {
+export function StillwoodBody({ isMobile }: { isMobile: boolean }) {
   return (
     <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", minHeight: isMobile ? 0 : 480 }}>
       <div style={{ flex: 1, background: "#E8EFEA", display: "flex", flexDirection: "column", overflow: "hidden" }}>
@@ -236,7 +236,7 @@ function StillwoodBody({ isMobile }: { isMobile: boolean }) {
   );
 }
 
-function ForgeAndBloomBody({ isMobile }: { isMobile: boolean }) {
+export function ForgeAndBloomBody({ isMobile }: { isMobile: boolean }) {
   return (
     <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", minHeight: isMobile ? 0 : 480 }}>
       <div style={{ flex: 1, background: "#F5E8E8", display: "flex", flexDirection: "column", overflow: "hidden" }}>
@@ -252,7 +252,7 @@ function ForgeAndBloomBody({ isMobile }: { isMobile: boolean }) {
           <h2 style={{ fontSize: isMobile ? 30 : 36, fontFamily: "Georgia,'Times New Roman',serif", color: "#4A2C2C", letterSpacing: "-0.02em", lineHeight: 1.0, fontWeight: 400, marginBottom: 10 }}>Forever,<br />little things.</h2>
           <p style={{ fontSize: 12, color: "#8B5A4B", lineHeight: 1.5, marginBottom: 18 }}>Permanent jewelry. Printable goods. Made by hand.</p>
           <div style={{ display: "flex", gap: 8 }}>
-            {[{ src: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=200&q=80", pos: "left center", label: "14k Gold" }, { src: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=200&q=80", pos: "center top", label: "Sterling" }, { src: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=200&q=80", pos: "right bottom", label: "Rose Gold" }].map((item) => (
+            {[{ src: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=200&q=80", pos: "left center", label: "14k Gold" }, { src: "https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=200&q=80", pos: "center top", label: "Sterling" }, { src: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=200&q=80", pos: "right bottom", label: "Rose Gold" }].map((item) => (
               <div key={item.label} style={{ flex: 1, borderRadius: 6, overflow: "hidden", position: "relative", height: 70 }}>
                 <img src={item.src} alt={item.label} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: item.pos }} loading="lazy" />
                 <div style={{ position: "absolute", inset: 0, background: "rgba(74,44,44,0.25)" }} />
@@ -267,7 +267,7 @@ function ForgeAndBloomBody({ isMobile }: { isMobile: boolean }) {
       </div>
       <div style={{ width: isMobile ? "100%" : 260, flexShrink: 0, background: "#fff", borderLeft: isMobile ? "none" : "0.5px solid rgba(74,44,44,0.08)", borderTop: isMobile ? "0.5px solid rgba(74,44,44,0.08)" : "none", padding: isMobile ? 18 : 16, display: "flex", flexDirection: "column" }}>
         <span style={{ fontSize: 13, fontFamily: "Georgia,'Times New Roman',serif", fontStyle: "italic", color: "#4A2C2C", marginBottom: 16, display: "block" }}>Featured this week</span>
-        {[{ name: "14k Gold Chain", price: "$85", src: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=80&q=70" }, { name: "Habit Tracker", price: "$12", src: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=80&q=70" }, { name: "Wellness Bundle", price: "$28", src: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=80&q=70" }].map((item) => (
+        {[{ name: "14k Gold Chain", price: "$85", src: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=80&q=70" }, { name: "Habit Tracker", price: "$12", src: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=80&q=70" }, { name: "Wellness Bundle", price: "$28", src: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=80&q=70" }].map((item) => (
           <div key={item.name} style={{ display: "flex", alignItems: "center", gap: 10, paddingTop: 10, paddingBottom: 10, borderBottom: "0.5px solid rgba(74,44,44,0.08)" }}>
             <img src={item.src} alt={item.name} style={{ width: 36, height: 36, objectFit: "cover", borderRadius: 4, flexShrink: 0 }} loading="lazy" />
             <span style={{ flex: 1, fontSize: 10, color: "#4A2C2C" }}>{item.name}</span>
@@ -285,7 +285,7 @@ const MOCKUP_BODIES = [BattenBayBody, LaYalyBody, StillwoodBody, ForgeAndBloomBo
 
 // ─── Browser chrome ───────────────────────────────────────────────────────────
 
-function BrowserChrome({ url }: { url: string }) {
+export function BrowserChrome({ url }: { url: string }) {
   return (
     <div style={{ height: 36, background: "#F5F5F7", borderRadius: "16px 16px 0 0", display: "flex", alignItems: "center", padding: "0 14px", gap: 6, flexShrink: 0, borderBottom: "0.5px solid rgba(0,0,0,0.06)", position: "relative", overflow: "hidden" }}>
       {[0, 1, 2].map((i) => <div key={i} style={{ width: 8, height: 8, borderRadius: "50%", background: "#D4D4D8", flexShrink: 0 }} />)}
