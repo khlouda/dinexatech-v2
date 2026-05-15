@@ -20,7 +20,7 @@ const PROJECTS = [
 
 // ── Right column — project directory ─────────────────────────────────────────
 
-function ProjectDirectory() {
+function ProjectDirectory({ isMobile }: { isMobile: boolean }) {
   return (
     <div
       style={{
@@ -69,9 +69,9 @@ function ProjectDirectory() {
           style={{
             display: "flex",
             alignItems: "center",
-            padding: "18px 20px",
+            padding: isMobile ? "14px 16px" : "18px 20px",
             borderBottom: i < PROJECTS.length - 1 ? "0.5px solid var(--color-border)" : "none",
-            gap: 16,
+            gap: isMobile ? 12 : 16,
           }}
         >
           {/* Number */}
@@ -88,31 +88,49 @@ function ProjectDirectory() {
             {p.num}
           </span>
 
-          {/* Category */}
-          <span
-            style={{
-              fontSize: 11,
-              color: "var(--color-text-muted)",
-              letterSpacing: "0.02em",
-              flexShrink: 0,
-              width: 80,
-            }}
-          >
-            {p.category}
-          </span>
+          {/* Category — hidden on mobile to save space */}
+          {!isMobile && (
+            <span
+              style={{
+                fontSize: 11,
+                color: "var(--color-text-muted)",
+                letterSpacing: "0.02em",
+                flexShrink: 0,
+                width: 80,
+              }}
+            >
+              {p.category}
+            </span>
+          )}
 
-          {/* Name */}
-          <span
-            style={{
-              fontSize: 15,
-              fontWeight: 400,
-              color: "var(--color-text-primary)",
-              letterSpacing: "-0.01em",
-              flex: 1,
-            }}
-          >
-            {p.name}
-          </span>
+          {/* Name (+ category on mobile) */}
+          <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", gap: 2 }}>
+            <span
+              style={{
+                fontSize: isMobile ? 14 : 15,
+                fontWeight: 400,
+                color: "var(--color-text-primary)",
+                letterSpacing: "-0.01em",
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+              }}
+            >
+              {p.name}
+            </span>
+            {isMobile && (
+              <span
+                style={{
+                  fontSize: 10,
+                  color: "var(--color-text-muted)",
+                  letterSpacing: "0.04em",
+                  textTransform: "uppercase",
+                }}
+              >
+                {p.category}
+              </span>
+            )}
+          </div>
 
           {/* Status */}
           <div
@@ -332,7 +350,7 @@ export function Hero() {
       {isMobile ? (
         <div style={{ display: "flex", flexDirection: "column", gap: 48 }}>
           <LeftColumn />
-          <ProjectDirectory />
+          <ProjectDirectory isMobile={isMobile} />
         </div>
       ) : (
         <div
@@ -344,7 +362,7 @@ export function Hero() {
           }}
         >
           <LeftColumn />
-          <ProjectDirectory />
+          <ProjectDirectory isMobile={isMobile} />
         </div>
       )}
     </section>

@@ -7,14 +7,16 @@ export function Footer() {
     <footer
       style={{
         borderTop: "0.5px solid var(--color-border)",
-        padding: "24px 32px",
+        padding: "24px clamp(20px, 5vw, 32px)",
       }}
     >
       <div
         style={{
           display: "flex",
+          flexWrap: "wrap",
           alignItems: "center",
           justifyContent: "space-between",
+          gap: 12,
           maxWidth: 1200,
           margin: "0 auto",
           width: "100%",
