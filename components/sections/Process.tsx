@@ -284,11 +284,13 @@ export function Process() {
 
   return (
     <section
+      id="process"
       style={{
         background:
           "linear-gradient(180deg, #FFFFFF 0%, #F5F5F7 28%, #F5F5F7 72%, #FFFFFF 100%)",
         padding: `clamp(60px, 8vw, 100px) clamp(22px, 5vw, 50px)`,
         position: "relative",
+        scrollMarginTop: "80px",
       }}
     >
       <div style={{ maxWidth: 1320, margin: "0 auto" }}>
