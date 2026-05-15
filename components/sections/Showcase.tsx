@@ -445,82 +445,7 @@ export function Showcase() {
               </motion.div>
             </div>
 
-            {/* Arrow controls — swipe affordance for mobile users */}
-            <div style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              padding: "0 4px",
-            }}>
-              <button
-                type="button"
-                onClick={prev}
-                aria-label="Previous project"
-                style={{
-                  width: 44,
-                  height: 44,
-                  borderRadius: "50%",
-                  border: "0.5px solid rgba(0,0,0,0.15)",
-                  background: "#fff",
-                  display: "inline-flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  cursor: "pointer",
-                  padding: 0,
-                  flexShrink: 0,
-                  boxShadow: "0 1px 2px rgba(0,0,0,0.04)",
-                }}
-              >
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path d="M10 3L5 8L10 13" stroke="#1D1D1F" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </button>
-
-              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                {cases.map((_, i) => (
-                  <button
-                    key={i}
-                    type="button"
-                    onClick={() => goTo(i)}
-                    aria-label={`Go to project ${i + 1}`}
-                    style={{
-                      width: i === activeIdx ? 22 : 6,
-                      height: 6,
-                      borderRadius: 3,
-                      border: "none",
-                      background: i === activeIdx ? "#1D1D1F" : "rgba(0,0,0,0.2)",
-                      cursor: "pointer",
-                      padding: 0,
-                      transition: "width 0.2s ease, background 0.2s ease",
-                    }}
-                  />
-                ))}
-              </div>
-
-              <button
-                type="button"
-                onClick={next}
-                aria-label="Next project"
-                style={{
-                  width: 44,
-                  height: 44,
-                  borderRadius: "50%",
-                  border: "0.5px solid rgba(0,0,0,0.15)",
-                  background: "#fff",
-                  display: "inline-flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  cursor: "pointer",
-                  padding: 0,
-                  flexShrink: 0,
-                  boxShadow: "0 1px 2px rgba(0,0,0,0.04)",
-                }}
-              >
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path d="M6 3L11 8L6 13" stroke="#1D1D1F" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </button>
-            </div>
+            <ArrowControls activeIdx={activeIdx} prev={prev} next={next} goTo={goTo} />
 
             <InfoPanel activeCase={activeCase} activeIdx={activeIdx} goTo={goTo} fading={fading} isMobile />
           </div>
@@ -532,27 +457,30 @@ export function Showcase() {
             gap: "clamp(40px, 5vw, 72px)",
             alignItems: "start",
           }}>
-            {/* Mockup */}
-            <div style={{ perspective: 2400, perspectiveOrigin: "center center" }}>
-              <motion.div
-                ref={mockupRef}
-                style={{
-                  borderRadius: 16,
-                  border: "0.5px solid rgba(0,0,0,0.08)",
-                  boxShadow: frameShadow,
-                  overflow: "hidden",
-                  willChange: "transform",
-                  rotateX: combinedRotateX,
-                  rotateY: cursorRotateY,
-                  scale: baseScale,
-                  opacity: baseOpacity,
-                }}
-              >
-                <BrowserChrome url={activeCase.url} />
-                <div style={{ opacity: fading ? 0.3 : 1, transition: "opacity 0.12s ease" }}>
-                  <MockupBody isMobile={false} />
-                </div>
-              </motion.div>
+            {/* Mockup column */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+              <div style={{ perspective: 2400, perspectiveOrigin: "center center" }}>
+                <motion.div
+                  ref={mockupRef}
+                  style={{
+                    borderRadius: 16,
+                    border: "0.5px solid rgba(0,0,0,0.08)",
+                    boxShadow: frameShadow,
+                    overflow: "hidden",
+                    willChange: "transform",
+                    rotateX: combinedRotateX,
+                    rotateY: cursorRotateY,
+                    scale: baseScale,
+                    opacity: baseOpacity,
+                  }}
+                >
+                  <BrowserChrome url={activeCase.url} />
+                  <div style={{ opacity: fading ? 0.3 : 1, transition: "opacity 0.12s ease" }}>
+                    <MockupBody isMobile={false} />
+                  </div>
+                </motion.div>
+              </div>
+              <ArrowControls activeIdx={activeIdx} prev={prev} next={next} goTo={goTo} />
             </div>
 
             {/* Info panel */}
@@ -562,6 +490,91 @@ export function Showcase() {
 
       </div>
     </section>
+  );
+}
+
+// ─── Arrow + dots control ────────────────────────────────────────────────────
+
+function ArrowControls({
+  activeIdx,
+  prev,
+  next,
+  goTo,
+}: {
+  activeIdx: number;
+  prev: () => void;
+  next: () => void;
+  goTo: (i: number) => void;
+}) {
+  const arrowBtn: React.CSSProperties = {
+    width: 44,
+    height: 44,
+    borderRadius: "50%",
+    border: "0.5px solid rgba(0,0,0,0.15)",
+    background: "#fff",
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    cursor: "pointer",
+    padding: 0,
+    flexShrink: 0,
+    boxShadow: "0 1px 2px rgba(0,0,0,0.04)",
+    transition: "background 0.15s ease, border-color 0.15s ease",
+  };
+  return (
+    <div style={{
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      padding: "0 4px",
+    }}>
+      <button
+        type="button"
+        onClick={prev}
+        aria-label="Previous project"
+        style={arrowBtn}
+        onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#1D1D1F"; (e.currentTarget.querySelector("path") as SVGPathElement).setAttribute("stroke", "#fff"); }}
+        onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#fff"; (e.currentTarget.querySelector("path") as SVGPathElement).setAttribute("stroke", "#1D1D1F"); }}
+      >
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M10 3L5 8L10 13" stroke="#1D1D1F" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </button>
+
+      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+        {cases.map((_, i) => (
+          <button
+            key={i}
+            type="button"
+            onClick={() => goTo(i)}
+            aria-label={`Go to project ${i + 1}`}
+            style={{
+              width: i === activeIdx ? 22 : 6,
+              height: 6,
+              borderRadius: 3,
+              border: "none",
+              background: i === activeIdx ? "#1D1D1F" : "rgba(0,0,0,0.2)",
+              cursor: "pointer",
+              padding: 0,
+              transition: "width 0.2s ease, background 0.2s ease",
+            }}
+          />
+        ))}
+      </div>
+
+      <button
+        type="button"
+        onClick={next}
+        aria-label="Next project"
+        style={arrowBtn}
+        onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#1D1D1F"; (e.currentTarget.querySelector("path") as SVGPathElement).setAttribute("stroke", "#fff"); }}
+        onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#fff"; (e.currentTarget.querySelector("path") as SVGPathElement).setAttribute("stroke", "#1D1D1F"); }}
+      >
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M6 3L11 8L6 13" stroke="#1D1D1F" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </button>
+    </div>
   );
 }
 
