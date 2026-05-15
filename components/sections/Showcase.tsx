@@ -423,8 +423,8 @@ export function Showcase() {
         </div>
 
         {isMobile ? (
-          /* ── Mobile: mockup top, info bottom ── */
-          <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
+          /* ── Mobile: mockup top, arrow control, info bottom ── */
+          <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
             <div style={{ perspective: 1200 }}>
               <motion.div
                 ref={mockupRef}
@@ -444,6 +444,84 @@ export function Showcase() {
                 </div>
               </motion.div>
             </div>
+
+            {/* Arrow controls — swipe affordance for mobile users */}
+            <div style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              padding: "0 4px",
+            }}>
+              <button
+                type="button"
+                onClick={prev}
+                aria-label="Previous project"
+                style={{
+                  width: 44,
+                  height: 44,
+                  borderRadius: "50%",
+                  border: "0.5px solid rgba(0,0,0,0.15)",
+                  background: "#fff",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  cursor: "pointer",
+                  padding: 0,
+                  flexShrink: 0,
+                  boxShadow: "0 1px 2px rgba(0,0,0,0.04)",
+                }}
+              >
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M10 3L5 8L10 13" stroke="#1D1D1F" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+
+              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                {cases.map((_, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    onClick={() => goTo(i)}
+                    aria-label={`Go to project ${i + 1}`}
+                    style={{
+                      width: i === activeIdx ? 22 : 6,
+                      height: 6,
+                      borderRadius: 3,
+                      border: "none",
+                      background: i === activeIdx ? "#1D1D1F" : "rgba(0,0,0,0.2)",
+                      cursor: "pointer",
+                      padding: 0,
+                      transition: "width 0.2s ease, background 0.2s ease",
+                    }}
+                  />
+                ))}
+              </div>
+
+              <button
+                type="button"
+                onClick={next}
+                aria-label="Next project"
+                style={{
+                  width: 44,
+                  height: 44,
+                  borderRadius: "50%",
+                  border: "0.5px solid rgba(0,0,0,0.15)",
+                  background: "#fff",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  cursor: "pointer",
+                  padding: 0,
+                  flexShrink: 0,
+                  boxShadow: "0 1px 2px rgba(0,0,0,0.04)",
+                }}
+              >
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M6 3L11 8L6 13" stroke="#1D1D1F" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+            </div>
+
             <InfoPanel activeCase={activeCase} activeIdx={activeIdx} goTo={goTo} fading={fading} isMobile />
           </div>
         ) : (
