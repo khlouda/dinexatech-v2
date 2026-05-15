@@ -179,9 +179,9 @@ function LeftColumn() {
           marginBottom: 20,
         }}
       >
-        Websites,
+        Your business,
         <br />
-        perfected.
+        beautifully online.
       </h1>
 
       <p
