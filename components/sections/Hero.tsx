@@ -232,36 +232,32 @@ function LeftColumn() {
         </a>
       </div>
 
-      {/* Spec pills */}
+      {/* Spec grid */}
       <div
         style={{
           paddingTop: 24,
           borderTop: "0.5px solid rgba(255,255,255,0.1)",
-          display: "flex",
-          flexWrap: "wrap",
-          gap: 8,
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: 10,
         }}
       >
         {SPECS.map((spec) => (
           <div
             key={spec.label}
             style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 8,
-              padding: "8px 14px",
-              borderRadius: 100,
-              border: "0.5px solid rgba(255,255,255,0.12)",
-              background: "rgba(255,255,255,0.05)",
+              padding: "12px 14px",
+              borderRadius: 8,
+              border: "0.5px solid rgba(255,255,255,0.1)",
+              background: "rgba(255,255,255,0.04)",
             }}
           >
-            <span style={{ fontFamily: MONO, fontSize: 9, color: "#6E6E73", letterSpacing: "0.1em" }}>
+            <div style={{ fontFamily: MONO, fontSize: 9, color: "#6E6E73", letterSpacing: "0.1em", marginBottom: 5 }}>
               {spec.label}
-            </span>
-            <span style={{ width: 1, height: 10, background: "rgba(255,255,255,0.1)", flexShrink: 0 }} />
-            <span style={{ fontSize: 13, fontWeight: 500, color: "#F5F5F7", letterSpacing: "-0.01em" }}>
+            </div>
+            <div style={{ fontSize: 14, fontWeight: 500, color: "#F5F5F7", letterSpacing: "-0.01em", lineHeight: 1.2 }}>
               {spec.value}
-            </span>
+            </div>
           </div>
         ))}
       </div>
