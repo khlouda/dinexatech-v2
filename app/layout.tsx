@@ -4,6 +4,7 @@ import "./globals.css";
 import { Providers } from "./providers";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
+import { ChatWidget } from "@/components/ChatWidget";
 
 const geist = Geist({
   variable: "--font-geist",
@@ -50,6 +51,7 @@ export default function RootLayout({
           <Nav />
           <main style={{ flex: 1 }}>{children}</main>
           <Footer />
+          <ChatWidget />
         </Providers>
       </body>
     </html>
